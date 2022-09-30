@@ -1,0 +1,17 @@
+Init:
+{
+
+}
+
+Loop:
+{
+    if(IOBoard.5EF29E4A.DI.0 == High)
+    {
+        IOBoard.5EF29E4A.DO.1 = High
+        WaitMs(50)
+        IOBoard.5EF29E4A.DO.1 = Low
+        WaitMs(50)
+    }
+}
+
+

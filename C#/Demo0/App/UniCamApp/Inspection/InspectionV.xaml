@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="UniCamApp.Inspection.InspectionV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:conv="clr-namespace:Common.Converters;assembly=Common"
+             xmlns:refimg="clr-namespace:ImageProcess.ReferenceImages;assembly=ImageProcess"
+             xmlns:modules="clr-namespace:ImageProcess.Modules;assembly=ImageProcess"
+             xmlns:logev="clr-namespace:LogicalEvaluator;assembly=LogicalEvaluator"
+             xmlns:contfind="clr-namespace:ImageProcess.ContourFinder;assembly=ImageProcess"
+             xmlns:cuscon="clr-namespace:CustomControl;assembly=CustomControl"
+             mc:Ignorable="d" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <conv:BoolToNotBoolConverter x:Key="BoolToNotBoolConverter"/>
+        <conv:DoubleRoundConverter3 x:Key="DoubleRoundConverter3"/>
+        <conv:NullableBoolToBrushOrangeRedGreenConverter x:Key="NullableBoolToBrushOrangeRedGreenConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="&lt;--" VerticalAlignment="Center" Margin="5" Click="BackButtonClick"/>
+            <cuscon:ElementHasResultAndIdMiniatureV Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+        </Grid>
+
+        <refimg:ReferenceImagesV Grid.Row="1" DataContext="{Binding ReferenceImagesDC}" Margin="5"/>
+        
+        <TabControl Grid.Row="2" SelectedIndex="{Binding SelectedTabItemIndex.CurrentValue}">
+            <TabItem Header="{Binding LanguageDC.ContourScan.CurrentValue, FallbackValue=Contour_scan}">
+                <ScrollViewer>
+                    <contfind:ContourFinderV DataContext="{Binding ContourFinderDC}"/>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="{Binding LanguageDC.Modules.CurrentValue, FallbackValue=Modules}">
+                <modules:ModulesV DataContext="{Binding ModulesDC}" Margin="5"/>
+            </TabItem>
+
+            <TabItem Header="{Binding LanguageDC.LogicalEvaluation.CurrentValue, FallbackValue=Logical_evaluation}">
+                <ScrollViewer>
+                    <logev:LogicalEvaluatorV DataContext="{Binding LogicalEvaluatorDC}"/>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

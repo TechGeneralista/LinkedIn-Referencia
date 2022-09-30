@@ -1,0 +1,39 @@
+﻿<Window x:Class="UniCamApp.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="720" Width="1280" WindowStartupLocation="CenterScreen"
+        xmlns:trigger="clr-namespace:UniCamApp.Trigger"
+        Title="{Binding Title}" MinWidth="800" MinHeight="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="Kép forrás" Margin="5" Padding="5" Click="ShowImageSourceSelectContentButtonClick"/>
+            <Button Content="Kép optimalizálás" Margin="5" Padding="5" IsEnabled="{Binding ShowImageOptimizationContentButtonIsEnable.Value}" Click="ShowImageOptimizationContentButtonClick"/>
+            <Button Content="Feladatok" Margin="5" Padding="5" IsEnabled="{Binding ShowTasksContentButtonIsEnable.Value}" Click="ShowTasksContentButtonClick"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Column="0" Header="Nézőke:" Margin="5" MouseDoubleClick="ImageDoubleClick">
+                <Image Source="{Binding ImageSource.Value}" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="5"
+                       MouseMove="ImageMouseMove"
+                       MouseDown="ImageMouseDown"
+                       MouseUp="ImageMouseUp"/>
+            </GroupBox>
+
+            <ContentControl Grid.Column="1" Margin="5" Content="{Binding CurrentContent.Value}"/>
+        </Grid>
+
+        <trigger:TriggerView Grid.Row="2"/>
+
+    </Grid>
+</Window>

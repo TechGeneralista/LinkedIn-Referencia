@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="AppLog.AppLogV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AppLog"
+             mc:Ignorable="d" d:DesignWidth="800">
+
+    <Grid Background="{Binding LastMessage.CurrentValue.BackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Text="{Binding LanguageDC.MessageColon.CurrentValue,FallbackValue=Messages:}" Foreground="{Binding LastMessage.CurrentValue.ForegroundColor}" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Grid.Column="1" Text="{Binding LastMessage.CurrentValue.Message}" Foreground="{Binding LastMessage.CurrentValue.ForegroundColor}" VerticalAlignment="Center" Margin="0,5,0,5"/>
+        <Button Grid.Column="2" Content="{Binding LanguageDC.ViewLog.CurrentValue,FallbackValue=View_log}" VerticalAlignment="Center" Margin="5" Click="ViewLogButtonClick"/>
+    </Grid>
+</UserControl>

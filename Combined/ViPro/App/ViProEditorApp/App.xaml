@@ -1,0 +1,42 @@
+﻿<Application x:Class="ViProEditorApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ViProEditorApp"
+             xmlns:main="clr-namespace:ViProEditorApp.UI.Main"
+             xmlns:projectConverter="clr-namespace:ViProEditorApp.UI.Project.Converter">
+    
+    <Application.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary>
+
+                    <ImageBrush x:Key="BackgroundBrush" ImageSource="pack://application:,,,/ViProEditorApp;component/Resources/Images/background_image.jpg"/>
+
+                </ResourceDictionary>
+
+                <ResourceDictionary>
+
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="MinWidth" Value="100"/>
+                    </Style>
+
+                </ResourceDictionary>
+
+                <ResourceDictionary>
+                    <projectConverter:ProjectNameInspectorStateToVisibilityConverter x:Key="projectNameInspectorStateToVisibilityConverter"/>
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="pack://application:,,,/ViProEditorApp;component/Resources/Icons/GearIcon.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ViProEditorApp;component/Resources/Icons/PlusIcon.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ViProEditorApp;component/Resources/Icons/MinusIcon.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    
+    </Application.Resources>
+    
+</Application>

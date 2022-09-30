@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="ImageCaptureDevice.UniversalVideoClass.CamVidProperties.UVCPropertyV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox IsEnabled="{Binding IsSupported}">
+        <GroupBox.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding OriginalName}"/>
+                <TextBlock Text="{Binding Current}" Margin="5,0,0,0"/>
+            </StackPanel>
+        </GroupBox.Header>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Column="0" Content="Auto" IsEnabled="{Binding IsAutoManual}" IsChecked="{Binding IsAuto}" VerticalAlignment="Center" Margin="5"/>
+
+            <TextBlock Grid.Column="1" Text="{Binding MinValue}" VerticalAlignment="Center"/>
+
+            <Slider Grid.Column="2" Minimum="{Binding MinValue}" 
+                                                Value="{Binding Current}" 
+                                                Maximum="{Binding MaxValue}"
+                                                TickFrequency="{Binding StepSize}"
+                                                IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Column="3" Text="{Binding MaxValue}" VerticalAlignment="Center"/>
+
+        </Grid>
+    </GroupBox>
+
+</UserControl>

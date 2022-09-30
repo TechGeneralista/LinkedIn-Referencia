@@ -1,0 +1,285 @@
+﻿<Window x:Class="UVCLib.Components.PropertiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:conv="clr-namespace:CommonLib.Converters;assembly=CommonLib"
+        xmlns:local="clr-namespace:UVCLib.Components"
+        Height="720" Width="1280"
+        WindowStartupLocation="CenterOwner" MinWidth="1280" MinHeight="720">
+
+    <Window.Resources>
+        <conv:LanguageConverter x:Key="LanguageConverter"/>
+    </Window.Resources>
+
+    <Window.Title>
+        <Binding Converter="{StaticResource LanguageConverter}" ConverterParameter="Video source properties:"/>
+    </Window.Title>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Grid.Column="0" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Preview image:'}">
+            <Image Source="{Binding Frame}" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="5"/>
+        </GroupBox>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Brightness:'}" IsEnabled="{Binding Brightness.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Brightness.IsAuto}" IsEnabled="{Binding Brightness.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Brightness.SliderIsEnable}" Minimum="{Binding Brightness.MinValue}" Value="{Binding Brightness.CurrentValue, Mode=TwoWay}" Maximum="{Binding Brightness.MaxValue}" TickFrequency="{Binding Brightness.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Brightness.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Contrast:'}" IsEnabled="{Binding Contrast.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Contrast.IsAuto}" IsEnabled="{Binding Contrast.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Contrast.SliderIsEnable}" Minimum="{Binding Contrast.MinValue}" Value="{Binding Contrast.CurrentValue}" Maximum="{Binding Contrast.MaxValue}" TickFrequency="{Binding Contrast.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Contrast.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Hue:'}" IsEnabled="{Binding Hue.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Hue.IsAuto}" IsEnabled="{Binding Hue.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Hue.SliderIsEnable}" Minimum="{Binding Hue.MinValue}" Value="{Binding Hue.CurrentValue}" Maximum="{Binding Hue.MaxValue}" TickFrequency="{Binding Hue.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Hue.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Saturation:'}" IsEnabled="{Binding Saturation.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Saturation.IsAuto}" IsEnabled="{Binding Saturation.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Saturation.SliderIsEnable}" Minimum="{Binding Saturation.MinValue}" Value="{Binding Saturation.CurrentValue}" Maximum="{Binding Saturation.MaxValue}" TickFrequency="{Binding Saturation.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Saturation.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Sharpness:'}" IsEnabled="{Binding Sharpness.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Sharpness.IsAuto}" IsEnabled="{Binding Sharpness.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Sharpness.SliderIsEnable}" Minimum="{Binding Sharpness.MinValue}" Value="{Binding Sharpness.CurrentValue}" Maximum="{Binding Sharpness.MaxValue}" TickFrequency="{Binding Sharpness.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Sharpness.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Gamma:'}" IsEnabled="{Binding Gamma.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Gamma.IsAuto}" IsEnabled="{Binding Gamma.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Gamma.SliderIsEnable}" Minimum="{Binding Gamma.MinValue}" Value="{Binding Gamma.CurrentValue}" Maximum="{Binding Gamma.MaxValue}" TickFrequency="{Binding Gamma.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Gamma.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='ColorEnable:'}" IsEnabled="{Binding ColorEnable.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding ColorEnable.IsAuto}" IsEnabled="{Binding ColorEnable.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding ColorEnable.SliderIsEnable}" Minimum="{Binding ColorEnable.MinValue}" Value="{Binding ColorEnable.CurrentValue}" Maximum="{Binding ColorEnable.MaxValue}" TickFrequency="{Binding ColorEnable.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding ColorEnable.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='White balance:'}" IsEnabled="{Binding WhiteBalance.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding WhiteBalance.IsAuto}" IsEnabled="{Binding WhiteBalance.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding WhiteBalance.SliderIsEnable}" Minimum="{Binding WhiteBalance.MinValue}" Value="{Binding WhiteBalance.CurrentValue}" Maximum="{Binding WhiteBalance.MaxValue}" TickFrequency="{Binding WhiteBalance.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding WhiteBalance.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Backlight compensation:'}" IsEnabled="{Binding BacklightCompensation.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding BacklightCompensation.IsAuto}" IsEnabled="{Binding BacklightCompensation.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding BacklightCompensation.SliderIsEnable}" Minimum="{Binding BacklightCompensation.MinValue}" Value="{Binding BacklightCompensation.CurrentValue}" Maximum="{Binding BacklightCompensation.MaxValue}" TickFrequency="{Binding BacklightCompensation.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding BacklightCompensation.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Gain:'}" IsEnabled="{Binding Gain.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Gain.IsAuto}" IsEnabled="{Binding Gain.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Gain.SliderIsEnable}" Minimum="{Binding Gain.MinValue}" Value="{Binding Gain.CurrentValue}" Maximum="{Binding Gain.MaxValue}" TickFrequency="{Binding Gain.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Gain.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Pan:'}" IsEnabled="{Binding Pan.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Pan.IsAuto}" IsEnabled="{Binding Pan.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Pan.SliderIsEnable}" Minimum="{Binding Pan.MinValue}" Value="{Binding Pan.CurrentValue}" Maximum="{Binding Pan.MaxValue}" TickFrequency="{Binding Pan.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Pan.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Tilt:'}" IsEnabled="{Binding Tilt.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Tilt.IsAuto}" IsEnabled="{Binding Tilt.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Tilt.SliderIsEnable}" Minimum="{Binding Tilt.MinValue}" Value="{Binding Tilt.CurrentValue}" Maximum="{Binding Tilt.MaxValue}" TickFrequency="{Binding Tilt.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Tilt.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Roll:'}" IsEnabled="{Binding Roll.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Roll.IsAuto}" IsEnabled="{Binding Roll.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Roll.SliderIsEnable}" Minimum="{Binding Roll.MinValue}" Value="{Binding Roll.CurrentValue}" Maximum="{Binding Roll.MaxValue}" TickFrequency="{Binding Roll.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Roll.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Zoom:'}" IsEnabled="{Binding Zoom.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Zoom.IsAuto}" IsEnabled="{Binding Zoom.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Zoom.SliderIsEnable}" Minimum="{Binding Zoom.MinValue}" Value="{Binding Zoom.CurrentValue}" Maximum="{Binding Zoom.MaxValue}" TickFrequency="{Binding Zoom.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Zoom.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Exposure:'}" IsEnabled="{Binding Exposure.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Exposure.IsAuto}" IsEnabled="{Binding Exposure.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Exposure.SliderIsEnable}" Minimum="{Binding Exposure.MinValue}" Value="{Binding Exposure.CurrentValue}" Maximum="{Binding Exposure.MaxValue}" TickFrequency="{Binding Exposure.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Exposure.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Iris:'}" IsEnabled="{Binding Iris.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Iris.IsAuto}" IsEnabled="{Binding Iris.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Iris.SliderIsEnable}" Minimum="{Binding Iris.MinValue}" Value="{Binding Iris.CurrentValue}" Maximum="{Binding Iris.MaxValue}" TickFrequency="{Binding Iris.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Iris.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Margin="5" Header="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Focus:'}"  IsEnabled="{Binding Focus.IsSupported}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Auto'}" IsChecked="{Binding Focus.IsAuto}" IsEnabled="{Binding Focus.AutoManualSwitchIsEnable}" Margin="5" VerticalAlignment="Center"/>
+                        <Slider Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding Focus.SliderIsEnable}" Minimum="{Binding Focus.MinValue}" Value="{Binding Focus.CurrentValue}" Maximum="{Binding Focus.MaxValue}" TickFrequency="{Binding Focus.StepSize}" IsSnapToTickEnabled="True"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Focus.CurrentValue}" VerticalAlignment="Center"/>
+                    </Grid>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Ok'}" Width="150" Click="OkButtonClick" Padding="5" Margin="5"/>
+            <Button Content="{Binding Converter={StaticResource LanguageConverter}, ConverterParameter='Set to default values'}" Width="150" Click="SetDefaultValuesButtonClick" Padding="5" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

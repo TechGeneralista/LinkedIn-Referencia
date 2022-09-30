@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="ImageProcess.Operation.AutoBarrelDistortionRemove.AutoBarrelDistortionRemoveV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImageProcess.Operation.AutoBarrelDistortionRemove"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             Height="500">
+
+    <TabControl>
+
+        <TabItem Header="Monokróm konvertálás">
+            <Viewbox>
+                <Image Source="{Binding MonochromeImage}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+            </Viewbox>
+        </TabItem>
+
+        <TabItem Header="Detektálás">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Row="0">
+                    <Image Source="{Binding DetectedImage0}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                </Viewbox>
+
+                <Viewbox Grid.Row="1">
+                    <Image Source="{Binding DetectedImage1}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                </Viewbox>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Maximum összeolvasztás">
+            <Viewbox>
+                <Image Source="{Binding MergeGreaterImage}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+            </Viewbox>
+        </TabItem>
+
+    </TabControl>
+    
+</UserControl>

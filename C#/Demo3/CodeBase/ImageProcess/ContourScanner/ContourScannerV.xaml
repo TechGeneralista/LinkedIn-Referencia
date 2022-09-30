@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="ImageProcess.ContourScanner.ContourScannerV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:referenceimages="clr-namespace:ImageProcess.ReferenceImages"
+             xmlns:usercontourpath="clr-namespace:ImageProcess.ContourScanner.UserContourPath"
+             xmlns:contourdetector="clr-namespace:ImageProcess.ContourScanner.ContourDetector">
+
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical">
+            <referenceimages:ReferenceImagesV DataContext="{Binding ReferenceImagesDC}" Margin="5"/>
+            <usercontourpath:UserContourPathV DataContext="{Binding UserContourPathDC}" Margin="5"/>
+            <contourdetector:ContourDetectorV DataContext="{Binding ContourDetectorDC}" Margin="5"/>
+        </StackPanel>
+    </ScrollViewer>
+    
+</UserControl>

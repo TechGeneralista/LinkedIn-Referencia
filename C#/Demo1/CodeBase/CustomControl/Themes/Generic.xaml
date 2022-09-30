@@ -1,0 +1,20 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlocksEditorStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemGroupStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemDataConnectionStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemTempConnectionStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemDataInputStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemDataOutputStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemTriggerOutputStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemTriggerInputStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/VisualEditor/BlockItemTriggerConnectionStyle.xaml"/>
+
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/PanZoomViewerStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/IconContainerStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/CustomControl;component/Themes/IconButtonStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

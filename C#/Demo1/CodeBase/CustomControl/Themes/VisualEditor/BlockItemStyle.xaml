@@ -1,0 +1,176 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CustomControl.VisualEditor"
+                    xmlns:cc="clr-namespace:CustomControl">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Common;component/Resource/VectorIcons.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style TargetType="{x:Type local:BlockItem}">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:BlockItem}">
+                    <Border x:Name="PART_CollisionBorder" BorderThickness="3" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
+                        <Border x:Name="PART_SelectionBorder" BorderThickness="3" CornerRadius="{TemplateBinding CornerRadius}">
+                            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="True">
+                                <Grid>
+
+                                    <Border x:Name="OpacityMaskGrid" Background="White" CornerRadius="{TemplateBinding CornerRadius}"/>
+                                    
+                                    <Grid x:Name="PART_MainGrid" Background="{TemplateBinding Background}">
+                                        <Grid.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=OpacityMaskGrid}"/>
+                                        </Grid.OpacityMask>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Background="LightGray">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding ModuleName}" VerticalAlignment="Center" Margin="5"/>
+
+                                            <cc:IconButton Grid.Column="1" x:Name="PART_RemoveButton" Width="20" Height="20" Padding="2" CornerRadius="5" Margin="5">
+                                                <Image Source="{StaticResource CloseDrawingImage}"/>
+                                            </cc:IconButton>
+
+                                        </Grid>
+
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Column="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <ItemsControl Grid.Row="0" x:Name="PART_TriggerInputItemsControl" Focusable="False">
+
+                                                    <ItemsControl.ItemContainerStyle>
+                                                        <Style TargetType="FrameworkElement">
+                                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                        </Style>
+                                                    </ItemsControl.ItemContainerStyle>
+
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+
+                                                </ItemsControl>
+
+                                                <ItemsControl Grid.Row="1" x:Name="PART_DataInputItemsControl" Focusable="False">
+
+                                                    <ItemsControl.ItemContainerStyle>
+                                                        <Style TargetType="FrameworkElement">
+                                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                        </Style>
+                                                    </ItemsControl.ItemContainerStyle>
+
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+
+                                                </ItemsControl>
+
+                                            </Grid>
+
+                                            <ContentPresenter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                                            <Grid Grid.Column="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <ItemsControl Grid.Row="0" x:Name="PART_TriggerOutputItemsControl" Focusable="False">
+
+                                                    <ItemsControl.ItemContainerStyle>
+                                                        <Style TargetType="FrameworkElement">
+                                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                        </Style>
+                                                    </ItemsControl.ItemContainerStyle>
+
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+
+                                                </ItemsControl>
+
+                                                <ItemsControl Grid.Row="1" x:Name="PART_DataOutputItemsControl" Focusable="False">
+
+                                                    <ItemsControl.ItemContainerStyle>
+                                                        <Style TargetType="FrameworkElement">
+                                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                        </Style>
+                                                    </ItemsControl.ItemContainerStyle>
+
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+
+                                                </ItemsControl>
+
+                                            </Grid>
+
+                                        </Grid>
+
+                                        <Grid Grid.Row="2" Height="20" Background="LightGray">
+                                            <Grid x:Name="PART_StatusGrid">
+
+                                                <Grid.ToolTip>
+                                                    <TextBlock Text="{TemplateBinding Message}"/>
+                                                </Grid.ToolTip>
+
+                                                <Grid x:Name="PART_ErrorIcon" Opacity="0">
+                                                    <Ellipse Width="15" Height="15" Fill="White"/>
+                                                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Red" Width="20" Height="20"
+                                                  Data="M 9.0644785,18.705154 C 7.4385156,18.535366 5.7809449,17.839556 4.4726563,16.777614 1.32253,14.220647 0.35527605,9.8034266 2.146004,6.1523437 2.6055592,5.2153648 3.1444111,4.4753484 3.9116332,3.7275679 7.0860207,0.6336216 12.057984,0.41402594 15.527344,3.2145393 c 0.43136,0.3481996 1.134273,1.0832044 1.479393,1.5469345 2.32739,3.1272668 2.325035,7.3415342 -0.0059,10.4865732 -0.376989,0.508665 -1.244165,1.375841 -1.75283,1.75283 -1.791598,1.327814 -3.98898,1.933443 -6.1835685,1.704277 z m -0.8517488,-5.1796 1.7482078,-1.747885 1.7482075,1.747885 c 0.961515,0.961336 1.765568,1.747884 1.786784,1.747884 0.05084,0 1.738446,-1.686962 1.738446,-1.737788 0,-0.02158 -0.786548,-0.825928 -1.747885,-1.787443 L 11.738605,9.999998 13.505995,8.2322879 15.273386,6.4645773 14.384873,5.5760645 13.49636,4.687552 11.72865,6.4549422 9.9609395,8.2223324 8.2127305,6.4744477 C 7.2512156,5.5131109 6.4471625,4.7265625 6.4259461,4.7265625 c -0.050845,0 -1.7384461,1.6869617 -1.7384461,1.7377871 0,0.021579 0.7865477,0.8259281 1.747884,1.7874426 L 8.1832684,10 6.4258625,11.757731 4.668457,13.515462 5.5467938,14.39445 c 0.4830847,0.483443 0.8871996,0.878988 0.898032,0.878988 0.010833,0 0.8063894,-0.786548 1.7679039,-1.747884 z"/>
+                                                </Grid>
+
+                                                <Grid x:Name="PART_OkIcon" Opacity="1">
+                                                    <Ellipse Width="15" Height="15" Fill="White"/>
+                                                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Green" Width="20" Height="20"
+                                                  Data="M 8.8867188,18.705911 C 8.7792969,18.686741 8.5771484,18.651686 8.4375,18.628011 7.5929129,18.484821 6.5111371,18.100997 5.7854102,17.687025 5.6050813,17.584161 5.4521539,17.5 5.4455719,17.5 5.4204852,17.5 5.0443918,17.239415 4.7025383,16.985172 2.9832196,15.706481 1.7195387,13.643957 1.3681732,11.542969 1.3430222,11.392578 1.3061441,11.174314 1.286222,11.057938 1.239244,10.783516 1.239244,9.2164844 1.286222,8.9420617 1.306144,8.8256855 1.343022,8.6074219 1.368173,8.4570313 1.5130273,7.590877 1.8697645,6.5787254 2.3166713,5.7659078 2.732244,5.0100797 3.1720773,4.4339582 3.8426242,3.7671184 4.6459109,2.9682725 5.5521062,2.3545732 6.5625,1.9251475 6.9171578,1.7744149 7.6291965,1.5343745 7.859666,1.4878504 8.227966,1.413503 8.6656273,1.3319835 8.9107539,1.2920731 c 0.3164477,-0.051523 1.8558871,-0.055718 2.1471841,-0.00585 0.116376,0.019922 0.33464,0.0568 0.485031,0.081951 0.429703,0.071863 0.74603,0.1536635 1.289062,0.3333457 2.570534,0.8505555 4.662805,2.9725495 5.505429,5.5836373 0.18851,0.5841481 0.250146,0.8588532 0.373211,1.6633559 0.05089,0.3327176 0.05089,1.770258 0,2.102976 -0.264672,1.730224 -0.773455,2.982097 -1.731748,4.261012 -0.361434,0.48236 -1.196113,1.31591 -1.666423,1.664168 -1.152795,0.853629 -2.480256,1.436303 -3.769531,1.654592 -0.150391,0.02546 -0.368655,0.0626 -0.485031,0.08252 -0.264067,0.0452 -1.9071771,0.03925 -2.1712192,-0.0079 z m 1.0767511,-3.812932 c 0.2241931,-0.295189 0.7596441,-1.002709 1.1898911,-1.572265 0.430247,-0.569557 1.032298,-1.365148 1.337891,-1.76798 0.305593,-0.402832 0.801717,-1.057617 1.102498,-1.455078 0.300781,-0.3974607 0.796337,-1.0522458 1.101234,-1.4550779 0.830478,-1.0972308 1.133557,-1.4983769 1.252258,-1.6574457 0.09014,-0.1207886 0.09879,-0.1520133 0.05414,-0.1953125 -0.0826,-0.080086 -0.36112,-0.3330734 -0.766447,-0.6961715 C 15.031141,5.9110871 14.776258,5.6805348 14.668529,5.5813098 14.335777,5.2748277 14.190566,5.15625 14.147999,5.15625 c -0.0225,0 -0.152014,0.1417379 -0.287812,0.3149727 C 13.724389,5.6444578 13.428711,6.020527 13.203125,6.3069316 12.977539,6.5933367 12.59082,7.085493 12.34375,7.4006125 11.731325,8.1817148 11.085713,9.0024523 10.898196,9.2382813 10.666718,9.5293988 9.9865684,10.394416 9.609375,10.87741 9.1167391,11.508227 9.1237859,11.500822 9.0542039,11.460839 9.0058289,11.433042 7.7794883,10.379774 7.601823,10.213432 7.5629086,10.176998 7.177191,9.8413387 6.4490676,9.2102816 6.3073539,9.0874598 6.1708191,8.9863855 6.145657,8.9856723 6.1114258,8.9847035 5.0063148,10.412419 4.5405781,11.059309 c -0.049219,0.06836 0.044669,0.164928 0.6938199,0.7136 0.3540059,0.299211 0.6115571,0.519721 0.6608707,0.565823 0.057616,0.05387 1.095202,0.948991 1.7190989,1.483068 0.1841683,0.157655 0.4479855,0.38617 0.5862609,0.507813 0.1382754,0.121642 0.2964785,0.256022 0.3515625,0.298621 0.055084,0.0426 0.1616762,0.132705 0.2368715,0.200236 0.4080367,0.366449 0.6883129,0.598192 0.7251887,0.599614 0.022877,8.82e-4 0.2250254,-0.239915 0.4492187,-0.535105 z"/>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Grid>
+
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

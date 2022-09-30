@@ -1,0 +1,13 @@
+Init:
+{
+    
+}
+
+Loop:
+{
+    IOBoard.72F7B0DD.DO.0 = High
+    IOBoard.72F7B0DD.DO.0 = Low
+}
+
+
+

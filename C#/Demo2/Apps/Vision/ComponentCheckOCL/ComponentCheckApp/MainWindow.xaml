@@ -1,0 +1,74 @@
+﻿<Window x:Class="ComponentCheckApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComponentCheckApp"
+        xmlns:devsel="clr-namespace:ComponentCheckApp.Views.DeviceSelect"
+        xmlns:digzoo="clr-namespace:ComponentCheckApp.Views.DigitalZoom"
+        xmlns:res="clr-namespace:ComponentCheckApp.Views.Resize"
+        xmlns:edgdet="clr-namespace:ComponentCheckApp.Views.EdgeDetector"
+        xmlns:shafin="clr-namespace:ComponentCheckApp.Views.ShapeFinder"
+        xmlns:settings="clr-namespace:ComponentCheckApp.Views.Settings"
+        mc:Ignorable="d"
+        Title="ComponentCheckAppOCL" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <TabControl Grid.Row="0" Margin="5">
+            <TabItem Header="Camera">
+                <devsel:DeviceSelectView/>
+            </TabItem>
+
+            <TabItem Header="Resize">
+                <res:ResizeView/>
+            </TabItem>
+
+            <TabItem Header="Digital zoom">
+                <digzoo:DigitalZoomView/>
+            </TabItem>
+
+            <TabItem Header="Edge detector">
+                <edgdet:EdgeDetectorView/>
+            </TabItem>
+
+            <TabItem Header="Shape finder">
+                <shafin:ShapeFinderView/>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                <settings:SettingsView/>
+            </TabItem>
+            
+        </TabControl>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Start" IsEnabled="{Binding StartButtonIsEnable}" Margin="5" Click="StartButtonClick" Height="50" Width="200" FontSize="32"/>
+            <TextBlock Grid.Column="1" Text="Last cycle time:" VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Grid.Column="2" Text="{Binding Elapsedmilliseconds}" VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Grid.Column="3" Text="ms" VerticalAlignment="Center" Margin="5"/>
+
+            <TextBlock Grid.Column="5" Text="{Binding ProgressPercentage, Mode=OneWay}" Visibility="{Binding ProgressBarVisibility}" VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Grid.Column="6" Text="%" VerticalAlignment="Center" Visibility="{Binding ProgressBarVisibility}" Margin="0,5,0,5"/>
+            <ProgressBar Grid.Column="7" Minimum="0" Value="{Binding ProgressBarValue, Mode=OneWay}" Visibility="{Binding ProgressBarVisibility}" Height="30" VerticalAlignment="Center" Maximum="{Binding ProgressBarMaximum, Mode=OneWay}" Margin="5"/>
+
+            <Button Grid.Column="9" Content="Help" Margin="5" Padding="5" VerticalAlignment="Center" Click="HelpButtonClick"/>
+        </Grid>
+        
+    </Grid>
+</Window>

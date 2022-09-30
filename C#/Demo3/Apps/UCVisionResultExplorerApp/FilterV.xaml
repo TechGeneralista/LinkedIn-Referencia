@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="UCVisionResultExplorerApp.FilterV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UCVisionResultExplorerApp"
+             xmlns:conv="clr-namespace:Common.Converters;assembly=Common"
+             mc:Ignorable="d" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <conv:DateFormat_YYYY_MM_DD_Converter x:Key="DateFormat_YYYY_MM_DD_Converter"/>
+    </UserControl.Resources>
+
+    <Expander Header="{Binding LanguageDC.Filter.Value, FallbackValue=Filter}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Column="0" Header="{Binding LanguageDC.FromColon.Value, FallbackValue=From:}">
+                <StackPanel Orientation="Vertical">
+                    <Calendar SelectedDate="{Binding FilterFromDate.Value}" Focusable="False"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding LanguageDC.HourColon.Value, FallbackValue=Hour:}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding HourFilterSource}" SelectedItem="{Binding SelectedFilerFromHour.Value}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="{Binding LanguageDC.ToColon.Value, FallbackValue=To:}">
+                <StackPanel Orientation="Vertical">
+                    <Calendar SelectedDate="{Binding FilterToDate.Value}" Focusable="False"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding LanguageDC.HourColon.Value, FallbackValue=Hour:}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding HourFilterSource}" SelectedItem="{Binding SelectedFilerToHour.Value}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </GroupBox>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="{Binding LanguageDC.TextColon.Value, FallbackValue=Text:}" Margin="10,5,5,5" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding FilterTextOptions.Value}" SelectedItem="{Binding FilterText.Value}" VerticalAlignment="Center"/>
+
+                </Grid>
+
+                <Button Grid.Row="2" Content="{Binding LanguageDC.Apply.Value, FallbackValue=Apply}" Margin="5" Padding="5" Click="ApplyButtonClick" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            </Grid>
+            
+        </Grid>
+    </Expander>
+</UserControl>

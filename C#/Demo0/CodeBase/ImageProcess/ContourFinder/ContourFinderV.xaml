@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="ImageProcess.ContourFinder.ContourFinderV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uconpath="clr-namespace:ImageProcess.ContourFinder.UserContourPath"
+             xmlns:det="clr-namespace:ImageProcess.ContourFinder.Detector"
+             mc:Ignorable="d" d:DesignWidth="500">
+    <StackPanel Orientation="Vertical">
+        <uconpath:UserContourPathV DataContext="{Binding UserContourPathDC}" Margin="5"/>
+        <det:DetectorV DataContext="{Binding DetectorDC}" Margin="5"/>
+    </StackPanel>
+</UserControl>

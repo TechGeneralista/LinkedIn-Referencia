@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6F3BF8E6-EFDA-4DA7-A12F-1E6FBAE07CF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UVCLib</RootNamespace>
+    <AssemblyName>UVCLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DirectShow\FilterInfo.cs" />
+    <Compile Include="DirectShow\FilterInfoCollection.cs" />
+    <Compile Include="DirectShow\Grabber.cs" />
+    <Compile Include="DirectShow\Internals\IAMCameraControl.cs" />
+    <Compile Include="DirectShow\Internals\IAMCrossbar.cs" />
+    <Compile Include="DirectShow\Internals\IAMStreamConfig.cs" />
+    <Compile Include="DirectShow\Internals\IAMVideoControl.cs" />
+    <Compile Include="DirectShow\Internals\IAMVideoProcAmp.cs" />
+    <Compile Include="DirectShow\Internals\IBaseFilter.cs" />
+    <Compile Include="DirectShow\Internals\ICaptureGraphBuilder2.cs" />
+    <Compile Include="DirectShow\Internals\ICreateDevEnum.cs" />
+    <Compile Include="DirectShow\Internals\IEnumFilters.cs" />
+    <Compile Include="DirectShow\Internals\IEnumPins.cs" />
+    <Compile Include="DirectShow\Internals\IFileSourceFilter.cs" />
+    <Compile Include="DirectShow\Internals\IFilterGraph.cs" />
+    <Compile Include="DirectShow\Internals\IFilterGraph2.cs" />
+    <Compile Include="DirectShow\Internals\IGraphBuilder.cs" />
+    <Compile Include="DirectShow\Internals\IMediaControl.cs" />
+    <Compile Include="DirectShow\Internals\IMediaEventEx.cs" />
+    <Compile Include="DirectShow\Internals\IMediaFilter.cs" />
+    <Compile Include="DirectShow\Internals\IPersist.cs" />
+    <Compile Include="DirectShow\Internals\IPin.cs" />
+    <Compile Include="DirectShow\Internals\IPropertyBag.cs" />
+    <Compile Include="DirectShow\Internals\IReferenceClock.cs" />
+    <Compile Include="DirectShow\Internals\ISampleGrabber.cs" />
+    <Compile Include="DirectShow\Internals\ISampleGrabberCB.cs" />
+    <Compile Include="DirectShow\Internals\ISpecifyPropertyPages.cs" />
+    <Compile Include="DirectShow\Internals\IVideoWindow.cs" />
+    <Compile Include="DirectShow\Internals\Structures.cs" />
+    <Compile Include="DirectShow\Internals\Tools.cs" />
+    <Compile Include="DirectShow\Internals\Uuids.cs" />
+    <Compile Include="DirectShow\Internals\Win32.cs" />
+    <Compile Include="DirectShow\PhysicalConnectorType.cs" />
+    <Compile Include="DirectShow\Uuids.cs" />
+    <Compile Include="DirectShow\VideoCapability.cs" />
+    <Compile Include="DirectShow\VideoCaptureDevice.cs" />
+    <Compile Include="DirectShow\VideoInput.cs" />
+    <Compile Include="Components\Internals\CameraControlProperty.cs" />
+    <Compile Include="Components\Internals\PropertyBase.cs" />
+    <Compile Include="Components\Internals\VideoProcAmpProperty.cs" />
+    <Compile Include="Components\PropertiesModel.cs" />
+    <Compile Include="Components\PropertiesWindow.xaml.cs">
+      <DependentUpon>PropertiesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UVCDevice.cs" />
+    <Compile Include="UVCDeviceScanner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Components\PropertiesWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{793622DF-5F75-45D6-BA86-B3974A58DE15}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6F03CD76-033A-4831-8A91-7989968C3B77}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageProcess</RootNamespace>
+    <AssemblyName>ImageProcess</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContourScanner\ContourDetector\ContourDetectorDC.cs" />
+    <Compile Include="ContourScanner\ContourDetector\ContourDetectorV.xaml.cs">
+      <DependentUpon>ContourDetectorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContourScanner\ContourDetector\AverageCenterAngleCalculator.cs" />
+    <Compile Include="ContourScanner\ContourDetector\AverageCenterCalculator.cs" />
+    <Compile Include="ContourScanner\ContourDetector\ContourDetectorResultDrawer.cs" />
+    <Compile Include="ContourScanner\ContourDetector\ContourDetectorResultDC.cs" />
+    <Compile Include="ContourScanner\ContourScannerDC.cs" />
+    <Compile Include="ContourScanner\ContourScannerV.xaml.cs">
+      <DependentUpon>ContourScannerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContourScanner\SamplingPointPair.cs" />
+    <Compile Include="ContourScanner\UserContourPath\TransformedUserContourPaths\TransformedUserContourPath.cs" />
+    <Compile Include="ContourScanner\UserContourPath\TransformedUserContourPaths\TransformedUserContourPathsDC.cs" />
+    <Compile Include="ContourScanner\UserContourPath\TransformedUserContourPaths\TransformedUserContourPathsDrawerDC.cs" />
+    <Compile Include="ContourScanner\UserContourPath\TransformedUserContourPaths\TransformedUserContourPathsV.xaml.cs">
+      <DependentUpon>TransformedUserContourPathsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathDC.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\DetectedCenter.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\UserContourPathDrawerDC.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\SamplingPointPairsCenter.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\SamplingPointPairsGroup.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\DetectedSize.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\UserContourPathEditorDC.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\UserContourPathDetector.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\UserContourPathEditorV.xaml.cs">
+      <DependentUpon>UserContourPathEditorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathEditor\UserLineDC.cs" />
+    <Compile Include="ContourScanner\UserContourPath\UserContourPathV.xaml.cs">
+      <DependentUpon>UserContourPathV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Counter\CounterModuleDC.cs" />
+    <Compile Include="Modules\Counter\CounterResultDrawer.cs" />
+    <Compile Include="Modules\Counter\CounterModuleV.xaml.cs">
+      <DependentUpon>CounterModuleV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReferenceImages\ReferenceImagesDC.cs" />
+    <Compile Include="ReferenceImages\ReferenceImagesV.xaml.cs">
+      <DependentUpon>ReferenceImagesV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KernelSources\KernelSourceBarrelDistortion.cs" />
+    <Compile Include="KernelSources\KernelSourceBGR24toBGRA32.cs" />
+    <Compile Include="KernelSources\KernelSourceBGR32toBGRA32.cs" />
+    <Compile Include="KernelSources\KernelSourceCenterCounter.cs" />
+    <Compile Include="KernelSources\KernelSourceCenterFinder.cs" />
+    <Compile Include="KernelSources\KernelSourceCenterPositionGetter.cs" />
+    <Compile Include="KernelSources\KernelSourceFlipVertical.cs" />
+    <Compile Include="KernelSources\KernelSourceMonochrome.cs" />
+    <Compile Include="KernelSources\KernelSourceNew.cs" />
+    <Compile Include="OpticalDistortionCorrection\OpticalDistortionCorrectionDC.cs" />
+    <Compile Include="OpticalDistortionCorrection\OpticalDistortionCorrectionV.xaml.cs">
+      <DependentUpon>OpticalDistortionCorrectionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\ICanProcessImageProcessSourceDC.cs" />
+    <Compile Include="Source\ImageProcessSourceDC.cs" />
+    <Compile Include="Source\ImageSourceDeviceDC.cs" />
+    <Compile Include="Templates\BarrelDistortion.cs" />
+    <Compile Include="Templates\FlipVertical.cs" />
+    <Compile Include="Templates\FormatConvert.cs" />
+    <Compile Include="Templates\Monochrome.cs" />
+    <Compile Include="Templates\SampleCenterFinder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ContourScanner\ContourDetector\ContourDetectorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContourScanner\ContourScannerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContourScanner\UserContourPath\TransformedUserContourPaths\TransformedUserContourPathsV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContourScanner\UserContourPath\UserContourPathEditor\UserContourPathEditorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContourScanner\UserContourPath\UserContourPathV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Counter\CounterModuleV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReferenceImages\ReferenceImagesV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OpticalDistortionCorrection\OpticalDistortionCorrectionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{724BE901-DDA3-49D1-8FF2-4EEE7CF3639B}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageCaptureDevice\ImageCaptureDevice.csproj">
+      <Project>{55C9E74C-ACFA-4918-96D3-CC540D38F9D1}</Project>
+      <Name>ImageCaptureDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenCLWrapper\OpenCLWrapper.csproj">
+      <Project>{9B2C7882-51E0-4418-BF80-E3020BD1555C}</Project>
+      <Name>OpenCLWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

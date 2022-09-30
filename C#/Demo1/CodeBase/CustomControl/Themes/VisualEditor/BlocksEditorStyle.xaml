@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CustomControl.VisualEditor"
+                    xmlns:cc="clr-namespace:CustomControl">
+
+    <Style TargetType="{x:Type local:BlocksEditor}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:BlocksEditor}">
+
+                    <cc:PanZoomViewer x:Name="PART_PanZoomViewer" Background="{TemplateBinding Background}" ScaleMaximum="2" ScaleMinimum=".01"
+                                      X="{Binding X, RelativeSource={RelativeSource TemplatedParent}}" Y="{Binding Y, RelativeSource={RelativeSource TemplatedParent}}" Scale="{Binding Scale, RelativeSource={RelativeSource TemplatedParent}}">
+
+                        <Canvas x:Name="PART_MainCanvas">
+
+                            <Canvas>
+                                <Ellipse Canvas.Left="-25" Canvas.Top="-25" Width="50" Height="50" StrokeThickness="5" Stroke="White"/>
+                                <Line X1="-25" Y1="-25" X2="25" Y2="25" Stroke="White" StrokeThickness="5"/>
+                                <Line X1="25" Y1="-25" X2="-25" Y2="25" Stroke="White" StrokeThickness="5"/>
+                            </Canvas>
+
+                            <local:BlockItemTempConnection x:Name="PART_BlockItemTempConnection" Visibility="Hidden"/>
+
+                            <Canvas x:Name="PART_SignalCanvas"/>
+
+                            <ItemsControl x:Name="PART_ItemsControl" ItemsSource="{TemplateBinding ItemsSource}" Focusable="False">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+
+                        </Canvas>
+                    </cc:PanZoomViewer>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

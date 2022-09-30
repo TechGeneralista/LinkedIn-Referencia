@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="MultiCamApp.Connection.ConnectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MultiCamApp.Connection"
+             xmlns:lang="clr-namespace:MultiCamApp.Language">
+    <UserControl.DataContext>
+        <local:ConnectionViewModel/>
+    </UserControl.DataContext>
+
+    <GroupBox Header="{x:Static lang:LanguageStrings.Connection}">
+        <TabControl Margin="5">
+
+            <TabItem Header="{x:Static lang:LanguageStrings.Subnet}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView Grid.Row="0" ItemsSource="{Binding MultiCamDeviceScanner.AvailableDevices}" SelectedItem="{Binding SelectedDevice}" SelectionMode="Single" IsEnabled="{Binding GuiControls.IsDeviceListEnable}" HorizontalContentAlignment="Stretch" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <local:DeviceInfoView/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="{x:Static lang:LanguageStrings.Scan}" Margin="5" Padding="5" Click="ScanButtonClick" IsEnabled="{Binding GuiControls.IsScanButtonEnable}"/>
+                        <Button Grid.Column="1" Content="{x:Static lang:LanguageStrings.Connect}" Margin="5" Padding="5" IsEnabled="{Binding GuiControls.IsConnectButtonEnable}"/>
+                        <Button Grid.Column="2" Content="{x:Static lang:LanguageStrings.Disconnect}" Margin="5" Padding="5" IsEnabled="{Binding GuiControls.IsDisconnectButtonEnable}"/>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </GroupBox>
+</UserControl>

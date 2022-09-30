@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="SmartVisionClientApp.Trigger.TriggerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartVisionClientApp.Trigger"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="720">
+    <GroupBox Header="Trigger:">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Text="Forrás:" VerticalAlignment="Center" Margin="5,5,5,0"/>
+                <ComboBox IsEnabled="{Binding SourceComboBoxIsEnable.Value}" ItemsSource="{Binding Sources}" SelectedItem="{Binding SelectedSource.Value}" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+            
+            <Button Grid.Column="2" Content="Egyszeri indítás" IsEnabled="{Binding SingleStartButtonIsEnable.Value}" Margin="5" Padding="5" VerticalAlignment="Center" Click="SingleStartButtonClick"/>
+
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding MinimumDelay}" VerticalAlignment="Center" Margin="5"/>
+                <Slider Grid.Row="0" Grid.Column="1" Value="{Binding Delay.Value}" Minimum="{Binding MinimumDelay}" Maximum="{Binding MaximumDelay}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding MaximumDelay}" VerticalAlignment="Center" Margin="5"/>
+                
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="indítási késleltetés:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding Delay.Value}" VerticalAlignment="Center"/>
+                    <TextBlock Text="ms" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Column="4" Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Grid.Column="4" Text="Ciklusidő:" VerticalAlignment="Center" Margin="5"/>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding CycleTime.Value}" VerticalAlignment="Center"/>
+                    <TextBlock Text="ms" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                </StackPanel>
+                
+            </StackPanel>
+            
+        </Grid>
+    </GroupBox>
+</UserControl>

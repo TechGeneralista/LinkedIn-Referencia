@@ -1,0 +1,54 @@
+Init:
+{
+    status = 0
+}
+
+Loop:
+{
+    if(status == 0)
+    {
+        IOBoard.72F7B0DD.DO.5 = Low
+        IOBoard.72F7B0DD.DO.0 = High
+    }
+
+    if(status == 1)
+    {
+        IOBoard.72F7B0DD.DO.0 = Low
+        IOBoard.72F7B0DD.DO.1 = High
+    }
+
+    if(status == 2)
+    {
+        IOBoard.72F7B0DD.DO.1 = Low
+        IOBoard.72F7B0DD.DO.2 = High
+    }
+
+    if(status == 3)
+    {
+        IOBoard.72F7B0DD.DO.2 = Low
+        IOBoard.72F7B0DD.DO.3 = High
+    }
+
+    if(status == 4)
+    {
+        IOBoard.72F7B0DD.DO.3 = Low
+        IOBoard.72F7B0DD.DO.4 = High
+    }
+
+    if(status == 5)
+    {
+        IOBoard.72F7B0DD.DO.4 = Low
+        IOBoard.72F7B0DD.DO.5 = High
+    }
+    
+    if(IOBoard.72F7B0DD.DIR.0 == High)
+    {
+        status = status + 1
+
+        if(status == 6)
+        {
+            status = 0
+        }
+    }
+}
+

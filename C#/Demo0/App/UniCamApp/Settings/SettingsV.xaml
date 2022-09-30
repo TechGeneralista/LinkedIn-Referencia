@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="UniCamApp.Settings.SettingsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:autload="clr-namespace:UniCamApp.Content.Settings.AutoLoader">
+
+    <GroupBox Header="{Binding LanguageDC.Program.CurrentValue, FallbackValue=Program}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="{Binding LanguageDC.Open.CurrentValue, FallbackValue=Open}" Margin="20,5,20,5" Click="OpenButtonClick"/>
+                <Button Grid.Column="1" Content="{Binding LanguageDC.Save.CurrentValue, FallbackValue=Save}" Margin="20,5,20,5" Click="SaveButtonClick"/>
+            </Grid>
+
+            <autload:AutoLoaderV Grid.Row="1" DataContext="{Binding AutoLoaderDC}"/>
+
+        </Grid>
+    </GroupBox>
+</UserControl>

@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="ImageProcess.ContourFinder.Detector.DetectorResultV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:conv="clr-namespace:Common.Converters;assembly=Common"
+             mc:Ignorable="d" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <conv:DoubleRoundConverter3 x:Key="DoubleRoundConverter3"/>
+    </UserControl.Resources>
+
+    <GroupBox Header="{Binding LanguageDC.MatchDataColon.CurrentValue, FallbackValue=Match_data:}">
+        <StackPanel Orientation="Vertical">
+            <ListView ItemsSource="{Binding PositionResults.CurrentValue}" Margin="5" Height="200">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{Binding LanguageDC.Index.CurrentValue, FallbackValue=Index}" Width="auto" DisplayMemberBinding="{Binding Index}"/>
+                        <GridViewColumn Header="{Binding LanguageDC.AbsX.CurrentValue, FallbackValue=Abs_X}" Width="auto" DisplayMemberBinding="{Binding AbsoluteCenter.X, Converter={StaticResource DoubleRoundConverter3}}"/>
+                        <GridViewColumn Header="{Binding LanguageDC.AbsY.CurrentValue, FallbackValue=Abs_Y}" Width="auto" DisplayMemberBinding="{Binding AbsoluteCenter.Y, Converter={StaticResource DoubleRoundConverter3}}"/>
+                        <GridViewColumn Header="{Binding LanguageDC.RelX.CurrentValue, FallbackValue=Rel_X}" Width="auto" DisplayMemberBinding="{Binding RelativeCenter.X, Converter={StaticResource DoubleRoundConverter3}}"/>
+                        <GridViewColumn Header="{Binding LanguageDC.RelY.CurrentValue, FallbackValue=Rel_Y}" Width="auto" DisplayMemberBinding="{Binding RelativeCenter.Y, Converter={StaticResource DoubleRoundConverter3}}"/>
+
+                        <GridViewColumn Header="{Binding LanguageDC.RotationAngle.CurrentValue, FallbackValue=Rotation_angle}" Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Angle, Converter={StaticResource DoubleRoundConverter3}}"/>
+                                        <TextBlock Text="°"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding LanguageDC.All1Colon.CurrentValue, FallbackValue=All:}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding PositionResults.CurrentValue.Count}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding LanguageDC.piece.CurrentValue, FallbackValue=piece}" Margin="0,0,5,0"/>
+            </StackPanel>
+
+        </StackPanel>
+    </GroupBox>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViProRunnerApp", "ViProRunnerApp\ViProRunnerApp.csproj", "{42E5397D-CA5F-4FF4-887D-88EB1C0459AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViProRunnerApp.Domain", "ViProRunnerApp.Domain\ViProRunnerApp.Domain.csproj", "{DA83324C-9106-45DC-8F5E-57D3AC219A9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42E5397D-CA5F-4FF4-887D-88EB1C0459AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E5397D-CA5F-4FF4-887D-88EB1C0459AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E5397D-CA5F-4FF4-887D-88EB1C0459AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E5397D-CA5F-4FF4-887D-88EB1C0459AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA83324C-9106-45DC-8F5E-57D3AC219A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA83324C-9106-45DC-8F5E-57D3AC219A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA83324C-9106-45DC-8F5E-57D3AC219A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA83324C-9106-45DC-8F5E-57D3AC219A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal

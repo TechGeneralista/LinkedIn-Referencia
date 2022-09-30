@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="LogicalEvaluator.LogicalEvaluatorV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LogicalEvaluator"
+             xmlns:idview="clr-namespace:CustomControl.Id;assembly=CustomControl"
+             xmlns:conv="clr-namespace:Common.Converters;assembly=Common"
+             xmlns:cuscon="clr-namespace:CustomControl;assembly=CustomControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <conv:NullableBoolToBrushOrangeRedGreenConverter x:Key="NullableBoolToBrushOrangeRedGreenConverter"/>
+        <conv:NullableBoolToStringNokOkConverter x:Key="NullableBoolToStringNokOkConverter"/>
+
+        <DataTemplate x:Key="LogicalEvaluatorV">
+            <Border BorderBrush="Blue" BorderThickness="1" CornerRadius="10">
+                <local:LogicalEvaluatorV/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ElementMiniatureV">
+            <Border BorderBrush="Blue" BorderThickness="1" CornerRadius="10">
+                <cuscon:ElementHasResultAndIdMiniatureV/>
+            </Border>
+        </DataTemplate>
+
+        <local:ViewTemplateSelector x:Key="ViewTemplateSelector" ElementTemplate="{StaticResource ElementMiniatureV}" GroupTemplate="{StaticResource LogicalEvaluatorV}"/>
+
+    </UserControl.Resources>
+
+    <Border BorderThickness="2" BorderBrush="{Binding Result.CurrentValue, FallbackValue=Orange, Converter={StaticResource NullableBoolToBrushOrangeRedGreenConverter}}" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding Result.CurrentValue, FallbackValue=N/A, Converter={StaticResource NullableBoolToStringNokOkConverter}}" FontWeight="Bold" Margin="5,0,5,0" Foreground="{Binding Result.CurrentValue, FallbackValue=Orange, Converter={StaticResource NullableBoolToBrushOrangeRedGreenConverter}}" VerticalAlignment="Center"/>
+                <idview:IdV Grid.Column="1" DataContext="{Binding IdDC}"/>
+            </Grid>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="{Binding LanguageDC.LogicalOperationColon.CurrentValue, FallbackValue=Logical_operation:}" Margin="5" VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding AvailableLogicOperations}" DisplayMemberPath="CurrentValue" SelectedIndex="{Binding SelectedLogicIndex.CurrentValue}" Margin="5"/>
+            </StackPanel>
+
+            <ListView Grid.Row="2" ItemsSource="{Binding Elements.CurrentValue}" SelectedItem="{Binding SelectedElement.CurrentValue}" SelectionMode="Single" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="5" ItemTemplateSelector="{StaticResource ViewTemplateSelector}"/>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding LanguageDC.ModuleIdColon.CurrentValue, FallbackValue=Module_id:}" VerticalAlignment="Center" Margin="5"/>
+
+                        <ComboBox Grid.Column="1" ItemsSource="{Binding ElementsSource.CurrentValue}" SelectedItem="{Binding SelectedElementToAdd.CurrentValue}" VerticalAlignment="Center" Margin="5">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <cuscon:ElementHasResultAndIdMiniatureV/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="{Binding LanguageDC.AddElement.CurrentValue, FallbackValue=Add_element}" Margin="5" Click="AddModuleButtonClick"/>
+                        <Button Grid.Column="1" Content="{Binding LanguageDC.AddGroup.CurrentValue, FallbackValue=Add_group}" Margin="5" Click="AddGroupButtonClick"/>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" Content="{Binding LanguageDC.RemoveSelected.CurrentValue, FallbackValue=Remove_selected}" Margin="5" Click="RemoveSelectedButtonClick"/>
+                    <Button Grid.Row="1" Content="{Binding LanguageDC.RemoveAll.CurrentValue, FallbackValue=Remove_all}" Margin="5" Click="RemoveAllButtonClick"/>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+    </Border>
+</UserControl>

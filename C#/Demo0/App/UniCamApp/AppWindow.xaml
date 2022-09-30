@@ -1,0 +1,213 @@
+﻿<Window x:Class="UniCamApp.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding Title}"
+        Width="1280" Height="720" WindowStartupLocation="CenterScreen"
+        xmlns:source="clr-namespace:UniCamApp.Source"
+        xmlns:applog="clr-namespace:AppLog;assembly=AppLog"
+        xmlns:ivc="clr-namespace:CustomControl.ImageViewControl;assembly=CustomControl"
+        xmlns:odc="clr-namespace:ImageProcess.OpticalDistortionCorrection;assembly=ImageProcess"
+        xmlns:isd="clr-namespace:ImageSourceDevice;assembly=ImageSourceDevice"
+        xmlns:trg="clr-namespace:CustomControl.Trigger;assembly=CustomControl"
+        xmlns:inst="clr-namespace:UniCamApp.Instance"
+        xmlns:cuscon="clr-namespace:CustomControl;assembly=CustomControl"
+        xmlns:comp="clr-namespace:UniCamApp.Inspection"
+        xmlns:logeva="clr-namespace:LogicalEvaluator;assembly=LogicalEvaluator"
+        xmlns:lang="clr-namespace:Language;assembly=Language"
+        xmlns:tcpsmc="clr-namespace:Communication.TCP.Server.MultiClient;assembly=Communication"
+        xmlns:set="clr-namespace:UniCamApp.Settings">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="White" Offset="0.8"/>
+            <GradientStop Color="DarkGray" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0" Background="Transparent" DataContext="{Binding SourceDC}" SelectedIndex="{Binding SelectedTabItemIndex.CurrentValue}">
+            <TabItem>
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Ellipse Grid.Column="0" Width="30" Height="30" Fill="Gray" Margin="5"/>
+                        <TextBlock Grid.Column="0" Text="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LanguageDC.ImageSource.CurrentValue,FallbackValue=Image_source}" Foreground="Black" VerticalAlignment="Center" Margin="5"/>
+                    </Grid>
+                </TabItem.Header>
+
+                <source:SourceV/>
+
+            </TabItem>
+
+            <TabItem IsEnabled="{Binding TabItemsIsEnabled.CurrentValue}">
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Ellipse Grid.Column="0" Width="30" Height="30" Fill="Gray" Margin="5"/>
+                        <TextBlock Grid.Column="0" Text="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LanguageDC.ImageOptimization.CurrentValue,FallbackValue=Image_optimization}" Foreground="Black" VerticalAlignment="Center" Margin="5"/>
+                    </Grid>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" MinWidth="300"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*" MinWidth="300"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <cuscon:ElementHasResultAndIdMiniatureV DataContext="{Binding SelectedInstance.CurrentValue}" Margin="5"/>
+                        <ivc:ImageViewControlV Grid.Row="1" DataContext="{Binding SelectedInstance.CurrentValue}" Source="{Binding ImageProcessSourceDC.ColorImage.CurrentValue}"/>
+                        <trg:TriggerV Grid.Row="2" DataContext="{Binding SelectedInstance.CurrentValue.TriggerDC}"/>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch">
+                        <GridSplitter.Background>
+                            <LinearGradientBrush StartPoint="0,.5" EndPoint="1,.5">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Blue" Offset=".5"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </GridSplitter.Background>
+                    </GridSplitter>
+
+                    <ScrollViewer Grid.Column="2">
+                        <StackPanel Orientation="Vertical" DataContext="{Binding SelectedInstance.CurrentValue}">
+                            <odc:OpticalDistortionCorrectionV DataContext="{Binding OpticalDistortionCorrectionDC}"/>
+                            <isd:ImageSourceDevicePropertiesV DataContext="{Binding ImageSourceDevice.Properties}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem IsEnabled="{Binding TabItemsIsEnabled.CurrentValue}">
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Ellipse Grid.Column="0" Width="30" Height="30" Fill="Gray" Margin="5"/>
+                        <TextBlock Grid.Column="0" Text="3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LanguageDC.Inspection.CurrentValue,FallbackValue=Inspection}" Foreground="Black" VerticalAlignment="Center" Margin="5"/>
+                    </Grid>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" MinWidth="300"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*" MinWidth="300"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <cuscon:ElementHasResultAndIdMiniatureV DataContext="{Binding SelectedInstance.CurrentValue}" Margin="5"/>
+                        <ivc:ImageViewControlV Grid.Row="1" DataContext="{Binding SelectedInstance.CurrentValue}" Source="{Binding ResultImage.CurrentValue}" MouseDown="ImageViewControlMouseDown" MouseMove="ImageViewControlMouseMove" MouseUp="ImageViewControlMouseUp"/>
+                        <trg:TriggerV Grid.Row="2" DataContext="{Binding SelectedInstance.CurrentValue.TriggerDC}"/>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch">
+                        <GridSplitter.Background>
+                            <LinearGradientBrush StartPoint="0,.5" EndPoint="1,.5">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Blue" Offset=".5"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </GridSplitter.Background>
+                    </GridSplitter>
+
+                    <ContentControl Grid.Column="2" DataContext="{Binding SelectedInstance.CurrentValue}" Content="{Binding CurrentContent.CurrentValue}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type inst:InstanceDC}">
+                                <inst:InstanceV/>
+                            </DataTemplate>
+
+                            <DataTemplate DataType="{x:Type comp:InspectionDC}">
+                                <comp:InspectionV/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem IsEnabled="{Binding TabItemsIsEnabled.CurrentValue}">
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Ellipse Grid.Column="0" Width="30" Height="30" Fill="Gray" Margin="5"/>
+                        <TextBlock Grid.Column="0" Text="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LanguageDC.Evaluation.CurrentValue,FallbackValue=Evaluation}" Foreground="Black" VerticalAlignment="Center" Margin="5"/>
+                    </Grid>
+                </TabItem.Header>
+
+                <logeva:LogicalEvaluatorV DataContext="{Binding LogicalEvaluatorDC}"/>
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Ellipse Grid.Column="0" Width="30" Height="30" Fill="Gray" Margin="5"/>
+                        <TextBlock Grid.Column="0" Text="5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LanguageDC.Settings.CurrentValue,FallbackValue=Settings}" Foreground="Black" VerticalAlignment="Center" Margin="5"/>
+                    </Grid>
+                </TabItem.Header>
+
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical" Margin="5">
+
+                        <lang:LanguageV DataContext="{Binding LanguageDC}"  HorizontalAlignment="Left" MinWidth="400"/>
+                        <tcpsmc:TCPServerMultiClientV DataContext="{Binding TCPServerMultiClientDC}" HorizontalAlignment="Left" MinWidth="400"/>
+                        <set:SettingsV DataContext="{Binding SettingsDC}" HorizontalAlignment="Left" MinWidth="400"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </TabItem>
+        </TabControl>
+
+        <applog:AppLogV Grid.Row="1" DataContext="{Binding AppLogDC}"/>
+
+    </Grid>
+</Window>

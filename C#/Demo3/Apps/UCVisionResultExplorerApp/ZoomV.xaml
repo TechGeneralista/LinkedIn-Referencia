@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="UCVisionResultExplorerApp.ZoomV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UCVisionResultExplorerApp"
+             mc:Ignorable="d" d:DesignWidth="500">
+    
+    <Grid Grid.Column="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Text="{Binding LanguageDC.ZoomColon.Value, FallbackValue=Zoom:}" Margin="5"/>
+        <Slider Grid.Column="1" Minimum="50" Value="{Binding ImageHeight.Value}" Maximum="300" Margin="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+    </Grid>
+</UserControl>

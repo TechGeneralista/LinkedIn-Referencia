@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="VisualBlocks.Module.TypeImageBufferBGRA32.ImageBufferBGRA32MonitorV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ve="clr-namespace:CustomControl.VisualEditor;assembly=CustomControl">
+
+    <ve:BlockItem ModuleName="Kép (színes) Monitor" Left="{Binding Left}" Top="{Binding Top}" IsSelected="{Binding IsSelected}" ShowStatus="True" ErrorOccurred="{Binding ErrorOccured}" Message="{Binding Message}">
+
+        <ve:BlockItem.TriggerInputs>
+            <ve:BlockItemTriggerInput DataContext="{Binding BlockItemTriggerInputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.TriggerInputs>
+        <ve:BlockItem.TriggerOutputs>
+            <ve:BlockItemTriggerOutput DataContext="{Binding BlockItemTriggerOutputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.TriggerOutputs>
+
+        <ve:BlockItem.DataInputs>
+            <ve:BlockItemDataInput DataContext="{Binding BlockItemDataInputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.DataInputs>
+        <ve:BlockItem.DataOutputs>
+            <ve:BlockItemDataOutput DataContext="{Binding BlockItemDataOutputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.DataOutputs>
+
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <CheckBox Grid.Row="0" Content="Bekapcsolva" IsChecked="{Binding IsEnabled,FallbackValue='true'}" Margin="5"/>
+            <Image Grid.Row="1" Source="{Binding ImageSource}" MaxWidth="500" MaxHeight="500" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+
+        </Grid>
+
+    </ve:BlockItem>
+
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="ImageProcessLib.Views.Wait.WaitView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageProcessLib.Views.Wait"
+        mc:Ignorable="d"
+        Title="WaitView" d:DesignHeight="80" d:DesignWidth="300" WindowStyle="None" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Please wait..." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <ProgressBar Grid.Row="1" Minimum="{Binding Minimum}" Value="{Binding Value}" Maximum="{Binding Maximum}" Margin="5" Height="20"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="UniCamApp.Inspections.InspectionsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cuscom="clr-namespace:CustomControl;assembly=CustomControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" ItemsSource="{Binding Inspections.CurrentValue}" SelectedItem="{Binding SelectedInspection.CurrentValue}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch" Margin="5" MouseDoubleClick="DoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cuscom:ElementHasResultAndIdMiniatureV/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="{Binding LanguageDC.AddNew.CurrentValue, FallbackValue=Add_new}" Margin="5" Padding="5" Click="AddNewButtonClick"/>
+            <Button Content="{Binding LanguageDC.RemoveSelected.CurrentValue, FallbackValue=Remove_selected}" Margin="5" Padding="5" Click="RemoveSelectedButtonClick"/>
+            <Button Content="{Binding LanguageDC.RemoveAll.CurrentValue, FallbackValue=Remove_all}" Margin="5" Padding="5" Click="RemoveAllButtonClick"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

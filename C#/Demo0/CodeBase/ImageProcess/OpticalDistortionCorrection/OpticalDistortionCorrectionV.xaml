@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="ImageProcess.OpticalDistortionCorrection.OpticalDistortionCorrectionV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImageProcess.OpticalDistortionCorrection"
+             mc:Ignorable="d" d:DesignWidth="800">
+    <GroupBox Header="{Binding LanguageDC.OpticalDistortionCorrectionColon.CurrentValue, FallbackValue=Optical_distortion_correction:}" Margin="5">
+        <StackPanel Orientation="Vertical">
+
+            <GroupBox>
+                <GroupBox.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LanguageDC.Strength.CurrentValue, FallbackValue=Strength}"/>
+                        <TextBlock Text="{Binding Strength.CurrentValue}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </GroupBox.Header>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="{Binding StrengthMinimum}" VerticalAlignment="Center"/>
+
+                    <Slider Grid.Column="1" Minimum="{Binding StrengthMinimum}" 
+                                                Value="{Binding Strength.CurrentValue}" 
+                                                Maximum="{Binding StrengthMaximum}"
+                                                TickFrequency=".001"
+                                                IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="2" Text="{Binding StrengthMaximum}" VerticalAlignment="Center"/>
+
+                </Grid>
+            </GroupBox>
+
+            <GroupBox>
+                <GroupBox.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LanguageDC.Zoom.CurrentValue, FallbackValue=Zoom}"/>
+                        <TextBlock Text="{Binding Zoom.CurrentValue}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </GroupBox.Header>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="{Binding ZoomMinimum}" VerticalAlignment="Center"/>
+
+                    <Slider Grid.Column="1" Minimum="{Binding ZoomMinimum}" 
+                                                Value="{Binding Zoom.CurrentValue}" 
+                                                Maximum="{Binding ZoomMaximum}"
+                                                TickFrequency=".001"
+                                                IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="2" Text="{Binding ZoomMaximum}" VerticalAlignment="Center"/>
+
+                </Grid>
+            </GroupBox>
+
+            <Button Content="{Binding LanguageDC.ResetToDefaults.CurrentValue, FallbackValue=Reset_to_defaults}" HorizontalAlignment="Center" Margin="5" Padding="5" Click="SetAllToDefaultButtonClick"/>
+
+        </StackPanel>
+    </GroupBox>
+</UserControl>

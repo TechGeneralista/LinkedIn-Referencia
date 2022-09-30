@@ -1,0 +1,48 @@
+﻿<Window x:Class="UCVisionResultExplorerApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UCVisionResultExplorerApp"
+        xmlns:lang="clr-namespace:Common.Language;assembly=Common"
+        mc:Ignorable="d"
+        Title="{Binding Title, FallbackValue=UCVisionResultExplorer}" Height="720" Width="1280"
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="White" Offset="0.8"/>
+            <GradientStop Color="DarkGray" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <local:ResultExplorerSourceV Grid.Column="0" DataContext="{Binding ResultExplorerDC}"/>
+            <local:ZoomV Grid.Column="1" DataContext="{Binding ResultExplorerDC}" VerticalAlignment="Center" Width="300"/>
+            <lang:LanguageV Grid.Column="2" DataContext="{Binding LanguageDC}" Margin="5,5,5,5"/>
+
+        </Grid>
+
+        <local:FilterV Grid.Row="1" DataContext="{Binding ResultExplorerDC}"/>
+        <local:ResultExplorerV Grid.Row="2" DataContext="{Binding ResultExplorerDC}"/>
+
+
+        <local:ResultExplorerLoadingV Grid.Row="4" DataContext="{Binding ResultExplorerDC}"/>
+
+    </Grid>
+</Window>

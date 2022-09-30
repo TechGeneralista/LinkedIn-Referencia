@@ -1,0 +1,14 @@
+Init:
+{
+
+}
+
+Loop:
+{
+    IOBoard.5EF29E4A.DO.0 = High
+    WaitMs(1000)
+    IOBoard.5EF29E4A.DO.0 = Low
+    WaitMs(1000)
+}
+
+

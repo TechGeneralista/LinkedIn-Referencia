@@ -1,0 +1,46 @@
+﻿<Window x:Class="ImageProcess.ImageCaptureDevice.UniversalVideoClass.UVCScannerV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uvc="clr-namespace:ImageCaptureDevice.UniversalVideoClass;assembly=ImageCaptureDevice"
+        Title="Univerzális videó eszköz kiválasztása" Width="1280" Height="500" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" IsEnabled="{Binding ViewIsEnabled}" Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" ItemsSource="{Binding Previews}" SelectedItem="{Binding SelectedPreview}"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Blue" BorderThickness="1" CornerRadius="10" Margin="5" Padding="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Image Grid.Row="0" Source="{Binding PreviewImage}"/>
+                            <uvc:UniversalVideoClassV Grid.Row="1" DataContext="{Binding ImageCaptureDevice}"/>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button Content="Keresés" Margin="5" Padding="5" Click="ScanButtonClick"/>
+            <Button Content="Kiválasztás" Margin="5" Padding="5" Click="SelectButtonClick"/>
+        </StackPanel>
+        
+    </Grid>
+    
+</Window>

@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="InstallerApp.Contents.AppSelectorV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InstallerApp.Contents"
+             xmlns:items="clr-namespace:InstallerApp.Items"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width=".5*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="1" Header="{Binding LanguageDC.ApplicationsAndToolsColon.Value, FallbackValue=ApplicationsAndTools:}" Margin="5">
+
+                    <TreeView ItemsSource="{Binding MainApps}">
+
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="{x:Type TreeViewItem}">
+                                <Setter Property="IsExpanded" Value="True"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+
+                        <TreeView.Resources>
+
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black" />
+
+                            <HierarchicalDataTemplate DataType="{x:Type items:MainApplicationItem}" ItemsSource="{Binding MainAppVersions}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding MainAppName}"/>
+                                    <TextBlock Text="{Binding LanguageDC.EndUserLicenseAgreement.Value, FallbackValue=EndUserLicenseAgreement}" TextDecorations="Underline" Margin="5,0,0,0" Foreground="Blue" MouseLeftButtonDown="ShowMainApplicationEndUserLicenseAgreementClick"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+
+                            <HierarchicalDataTemplate DataType="{x:Type items:MainApplicationVersionItem}" ItemsSource="{Binding ToolApps}">
+                                <CheckBox IsChecked="{Binding IsSelected.Value}" Content="{Binding Version}"/>
+                            </HierarchicalDataTemplate>
+
+                            <HierarchicalDataTemplate DataType="{x:Type items:ToolApplicationItem}" ItemsSource="{Binding ToolAppVersions}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ToolAppName}"/>
+                                    <TextBlock Text="{Binding LanguageDC.EndUserLicenseAgreement.Value, FallbackValue=EndUserLicenseAgreement}" TextDecorations="Underline" Margin="5,0,0,0" Foreground="Blue" MouseLeftButtonDown="ShowToolApplicationEndUserLicenseAgreementClick"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+
+                            <DataTemplate DataType="{x:Type items:ToolApplicationVersionItem}">
+                                <CheckBox IsChecked="{Binding IsSelected.Value}" Content="{Binding Version}"/>
+                            </DataTemplate>
+                            
+                        </TreeView.Resources>
+                    </TreeView>
+
+                </GroupBox>
+
+            </Grid>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding LanguageDC.ByInstallingOrUsingThisProductYouAgreeToItsColon.Value, FallbackValue=ByInstallingOrUsingThisProductYouAgreeToIts:}" Margin="5,0,0,5"/>
+                <TextBlock Text="{Binding LanguageDC.EndUserLicenseAgreement.Value, FallbackValue=EndUserLicenseAgreement}" Margin="5,0,0,0"/>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="{Binding LanguageDC.Back.Value, FallbackValue=Back}" Padding="5" Margin="5" Width="100" Click="BackButtonClick"/>
+            <Button Grid.Column="2" Content="{Binding LanguageDC.Next.Value, FallbackValue=Next}" Padding="5" Margin="5" Width="100" Click="NextButtonClick"/>
+
+        </Grid>
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,47 @@
+Init:
+{
+    status = 0
+}
+
+Loop:
+{
+    if(status == 0)
+    {
+        Jump(LowSpeedBlink)
+    }
+
+    if(status == 1)
+    {
+        Jump(HighSpeedBlink)
+    }
+
+    if (IOBoard.5EF29E4A.DIR.0 == High)
+    {
+        if(status == 0)
+        {
+            status = 1
+        }
+        else
+        {
+            status = 0
+        }
+    }
+}
+
+HighSpeedBlink:
+{
+    IOBoard.5EF29E4A.DO.0 = High
+    WaitMs(10)
+    IOBoard.5EF29E4A.DO.0 = Low
+    WaitMs(10)
+}
+
+LowSpeedBlink:
+{
+    IOBoard.5EF29E4A.DO.0 = High
+    WaitMs(100)
+    IOBoard.5EF29E4A.DO.0 = Low
+    WaitMs(100)
+}
+
+

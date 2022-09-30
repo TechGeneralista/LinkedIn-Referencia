@@ -1,0 +1,408 @@
+﻿<UserControl x:Class="VisualBlocks.VisualEditor.VisualEditorV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cc="clr-namespace:CustomControl;assembly=CustomControl"
+             xmlns:ve="clr-namespace:CustomControl.VisualEditor;assembly=CustomControl"
+             xmlns:base="clr-namespace:VisualBlocks.Module.Base"
+             xmlns:uvc="clr-namespace:VisualBlocks.Module.ImageSource.UniversalVideoClass"
+             xmlns:typestring="clr-namespace:VisualBlocks.Module.TypeString"
+             xmlns:typeint="clr-namespace:VisualBlocks.Module.TypeInt"
+             xmlns:typefloat="clr-namespace:VisualBlocks.Module.TypeFloat"
+             xmlns:typebool="clr-namespace:VisualBlocks.Module.TypeBool"
+             xmlns:typebgra32="clr-namespace:VisualBlocks.Module.TypeImageBufferBGRA32"
+             xmlns:branch="clr-namespace:VisualBlocks.Module.Branch"
+             xmlns:trigger="clr-namespace:VisualBlocks.Module.Trigger"
+             xmlns:conv="clr-namespace:Common.Converter;assembly=Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280">
+
+    <UserControl.Resources>
+        <conv:IsAssignableFromConverter x:Key="IsAssignableFromConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <ve:BlocksEditor x:Name="blocksEditor" Background="LightBlue" ItemsSource="{Binding Items}"
+                         X="{Binding X}" Y="{Binding Y}" Scale="{Binding Scale}"
+                         AddNewDataConnection="BlocksEditor_NewDataConnection" AddNewTriggerConnection="BlocksEditor_AddNewTriggerConnection" RemoveItems="BlocksEditor_RemoveItems"
+                         KeyDown="BlocksEditor_KeyPressOrRelease" KeyUp="BlocksEditor_KeyPressOrRelease">
+
+            <ve:BlocksEditor.Resources>
+
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Style.Setters>
+                        <Setter Property="Panel.ZIndex" Value="{Binding ZIndex}"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Converter={StaticResource IsAssignableFromConverter}, ConverterParameter={x:Type base:BlockItemDC}}" Value="true">
+                            <DataTrigger.Setters>
+                                <Setter Property="Canvas.Left" Value="{Binding Left}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding Top}"/>
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+
+                <DataTemplate DataType="{x:Type base:BlockItemGroupDC}">
+                    <ve:BlockItemGroup Left="{Binding Left}" Top="{Binding Top}" IsSelected="{Binding IsSelected}" Width="{Binding Width, Mode=TwoWay}" Height="{Binding Height, Mode=TwoWay}" GroupName="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type base:BlockItemDataConnectionBaseDC}">
+                    <ve:BlockItemDataConnection BackgroundPathStrokeThickness="10" PathStrokeThickness="5" OutputDataContext="{Binding BlockItemDataOutputDC}" InputDataContext="{Binding BlockItemDataInputDC}" Active="{Binding Active}" IsSelected="{Binding IsSelected}"/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type base:BlockItemTriggerConnectionDC}">
+                    <ve:BlockItemTriggerConnection BackgroundPathStrokeThickness="10" PathStrokeThickness="5" OutputDataContext="{Binding BlockItemTriggerOutputDC}" InputDataContext="{Binding BlockItemTriggerInputDC}" Active="{Binding Active}" IsSelected="{Binding IsSelected}"/>
+                </DataTemplate>
+
+                <!-- Kép forrás -->
+                <DataTemplate DataType="{x:Type uvc:UniversalVideoClassDC}">
+                    <uvc:UniversalVideoClassV/>
+                </DataTemplate>
+
+                <!-- ImageBufferBGRA32 -->
+                <DataTemplate DataType="{x:Type typebgra32:ImageBufferBGRA32MonitorDC}">
+                    <typebgra32:ImageBufferBGRA32MonitorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebgra32:ImageBufferBGRA32DataSelectorDC}">
+                    <typebgra32:ImageBufferBGRA32DataSelectorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebgra32:ImageBufferBGRA32ExtensionDC}">
+                    <typebgra32:ImageBufferBGRA32ExtensionV/>
+                </DataTemplate>
+
+                <!-- Trigger -->
+                <DataTemplate DataType="{x:Type trigger:TriggerInitializeDC}">
+                    <trigger:TriggerInitializeV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type trigger:TriggerButtonDC}">
+                    <trigger:TriggerButtonV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type trigger:TriggerKeyPressDC}">
+                    <trigger:TriggerKeyPressV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type trigger:TriggerDelayDC}">
+                    <trigger:TriggerDelayV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type trigger:TriggerExtensionDC}">
+                    <trigger:TriggerExtensionV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type trigger:TriggerContinousDC}">
+                    <trigger:TriggerContinousV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type trigger:TriggerSerialDC}">
+                    <trigger:TriggerSerialV/>
+                </DataTemplate>
+
+                <!-- Elágazás -->
+                <DataTemplate DataType="{x:Type branch:BranchDC}">
+                    <branch:BranchV/>
+                </DataTemplate>
+
+                <!-- String -->
+                <DataTemplate DataType="{x:Type typestring:StringCompareDC}">
+                    <typestring:StringCompareV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringConstantDC}">
+                    <typestring:StringConstantV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringMonitorDC}">
+                    <typestring:StringMonitorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringDataSelectorDC}">
+                    <typestring:StringDataSelectorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringExtensionDC}">
+                    <typestring:StringExtensionV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringContainerDC}">
+                    <typestring:StringContainerV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringContainerWriteDC}">
+                    <typestring:StringContainerWriteV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringContainerReadDC}">
+                    <typestring:StringContainerReadV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typestring:StringContainerExtensionDC}">
+                    <typestring:StringContainerExtensionV/>
+                </DataTemplate>
+
+                <!-- Int -->
+                <DataTemplate DataType="{x:Type typeint:IntCompareDC}">
+                    <typeint:IntCompareV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntConstantDC}">
+                    <typeint:IntConstantV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntMonitorDC}">
+                    <typeint:IntMonitorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntDataSelectorDC}">
+                    <typeint:IntDataSelectorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntMathOperationDC}">
+                    <typeint:IntMathOperationV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntExtensionDC}">
+                    <typeint:IntExtensionV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntRandomDC}">
+                    <typeint:IntRandomV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntContainerDC}">
+                    <typeint:IntContainerV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntContainerWriteDC}">
+                    <typeint:IntContainerWriteV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntContainerReadDC}">
+                    <typeint:IntContainerReadV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typeint:IntContainerExtensionDC}">
+                    <typeint:IntContainerExtensionV/>
+                </DataTemplate>
+
+                <!-- Float -->
+                <DataTemplate DataType="{x:Type typefloat:FloatCompareDC}">
+                    <typefloat:FloatCompareV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatConstantDC}">
+                    <typefloat:FloatConstantV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatMonitorDC}">
+                    <typefloat:FloatMonitorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatDataSelectorDC}">
+                    <typefloat:FloatDataSelectorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatMathOperationDC}">
+                    <typefloat:FloatMathOperationV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatExtensionDC}">
+                    <typefloat:FloatExtensionV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatRandomDC}">
+                    <typefloat:FloatRandomV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatContainerDC}">
+                    <typefloat:FloatContainerV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatContainerWriteDC}">
+                    <typefloat:FloatContainerWriteV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatContainerReadDC}">
+                    <typefloat:FloatContainerReadV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typefloat:FloatContainerExtensionDC}">
+                    <typefloat:FloatContainerExtensionV/>
+                </DataTemplate>
+
+                <!-- Bool -->
+                <DataTemplate DataType="{x:Type typebool:BoolCompareDC}">
+                    <typebool:BoolCompareV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolConstantDC}">
+                    <typebool:BoolConstantV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolMonitorDC}">
+                    <typebool:BoolMonitorV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolNotDC}">
+                    <typebool:BoolNotV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolOperationDC}">
+                    <typebool:BoolOperationV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolExtensionDC}">
+                    <typebool:BoolExtensionV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolContainerDC}">
+                    <typebool:BoolContainerV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolContainerWriteDC}">
+                    <typebool:BoolContainerWriteV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolContainerReadDC}">
+                    <typebool:BoolContainerReadV/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type typebool:BoolContainerExtensionDC}">
+                    <typebool:BoolContainerExtensionV/>
+                </DataTemplate>
+
+            </ve:BlocksEditor.Resources>
+
+            <ve:BlocksEditor.ContextMenu>
+                <ContextMenu>
+
+                    <MenuItem Header="Importálás" Click="ImportButtonClick"/>
+                    
+                    <MenuItem Header="Indító">
+                        <MenuItem Header="Inicializáló" Click="AddNewTriggerInitializeButtonClick"/>
+                        <MenuItem Header="Egyszerű" Click="AddNewTriggerButtonButtonClick"/>
+                        <MenuItem Header="Billentyűzet" Click="AddNewTriggerKeyPressButtonClick"/>
+                        <MenuItem Header="Késleltetés" Click="AddNewTriggerDelayButtonClick"/>
+                        <MenuItem Header="Toldó" Click="AddNewTriggerExtensionButtonClick"/>
+                        <MenuItem Header="Folyamatos" Click="AddNewTriggerContinousButtonClick"/>
+                        <MenuItem Header="Soros osztó" Click="AddNewTriggerSerialButtonClick"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Szöveg">
+                        <MenuItem Header="Állandó" Click="AddNewStringConstantButtonClick"/>
+                        <MenuItem Header="Monitor" Click="AddNewMonitorStringButtonClick"/>
+                        <MenuItem Header="Összehasonlítás" Click="AddNewStringCompareButtonClick"/>
+                        <MenuItem Header="Adatkiválasztó" Click="AddNewStringDataSelectorButtonClick"/>
+                        <MenuItem Header="Toldó" Click="AddNewStringExtensionButtonClick"/>
+
+                        <MenuItem Header="Tároló">
+                            <MenuItem Header="Tároló" Click="AddNewStringContainerButtonClick"/>
+                            <MenuItem Header="Tároló Írás" Click="AddNewStringContainerWriteButtonClick"/>
+                            <MenuItem Header="Tároló Olvasás" Click="AddNewStringContainerReadButtonClick"/>
+                            <MenuItem Header="Toldó" Click="AddNewStringContainerExtensionButtonClick"/>
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <MenuItem Header="Szám (egész)">
+                        <MenuItem Header="Állandó" Click="AddNewIntConstantButtonClick"/>
+                        <MenuItem Header="Monitor" Click="AddNewIntMonitorButtonClick"/>
+                        <MenuItem Header="Összehasonlítás" Click="AddNewIntCompareButtonClick"/>
+                        <MenuItem Header="Adatkiválasztó" Click="AddNewIntDataSelectorButtonClick"/>
+                        <MenuItem Header="Matematikai művelet" Click="AddNewIntMathOperationButtonClick"/>
+                        <MenuItem Header="Toldó" Click="AddNewIntExtensionButtonClick"/>
+                        <MenuItem Header="Véletlen generálás" Click="AddNewIntRandomButtonClick"/>
+
+                        <MenuItem Header="Tároló">
+                            <MenuItem Header="Tároló" Click="AddNewIntContainerButtonClick"/>
+                            <MenuItem Header="Tároló Írás" Click="AddNewIntContainerWriteButtonClick"/>
+                            <MenuItem Header="Tároló Olvasás" Click="AddNewIntContainerReadButtonClick"/>
+                            <MenuItem Header="Toldó" Click="AddNewIntContainerExtensionButtonClick"/>
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <MenuItem Header="Szám (tört)">
+                        <MenuItem Header="Állandó" Click="AddNewFloatConstantButtonClick"/>
+                        <MenuItem Header="Monitor" Click="AddNewFloatMonitorButtonClick"/>
+                        <MenuItem Header="Összehasonlítás" Click="AddNewFloatCompareButtonClick"/>
+                        <MenuItem Header="Adatkiválasztó" Click="AddNewFloatDataSelectorButtonClick"/>
+                        <MenuItem Header="Matematikai művelet" Click="AddNewFloatMathOperationButtonClick"/>
+                        <MenuItem Header="Toldó" Click="AddNewFloatExtensionButtonClick"/>
+                        <MenuItem Header="Véletlen generálás" Click="AddNewFloatRandomButtonClick"/>
+
+                        <MenuItem Header="Tároló">
+                            <MenuItem Header="Tároló" Click="AddNewFloatContainerButtonClick"/>
+                            <MenuItem Header="Tároló Írás" Click="AddNewFloatContainerWriteButtonClick"/>
+                            <MenuItem Header="Tároló Olvasás" Click="AddNewFloatContainerReadButtonClick"/>
+                            <MenuItem Header="Toldó" Click="AddNewFloatContainerExtensionButtonClick"/>
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <MenuItem Header="Logikai">
+                        <MenuItem Header="Állandó" Click="AddNewBoolConstantButtonClick"/>
+                        <MenuItem Header="Monitor" Click="AddNewBoolMonitorButtonClick"/>
+                        <MenuItem Header="Összehasonlítás" Click="AddNewBoolCompareButtonClick"/>
+                        <MenuItem Header="Negálás" Click="AddNewBoolNotButtonClick"/>
+                        <MenuItem Header="Művelet" Click="AddNewBoolOperationButtonClick"/>
+                        <MenuItem Header="Toldó" Click="AddNewBoolExtensionButtonClick"/>
+
+                        <MenuItem Header="Tároló">
+                            <MenuItem Header="Tároló" Click="AddNewBoolContainerButtonClick"/>
+                            <MenuItem Header="Tároló Írás" Click="AddNewBoolContainerWriteButtonClick"/>
+                            <MenuItem Header="Tároló Olvasás" Click="AddNewBoolContainerReadButtonClick"/>
+                            <MenuItem Header="Toldó" Click="AddNewBoolContainerExtensionButtonClick"/>
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <MenuItem Header="Kép forrás">
+                        <MenuItem Header="Univerzális videó" Click="AddNewUniversalVideoButtonClick"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Kép (színes)">
+                        <MenuItem Header="Monitor" Click="AddNewImageBufferBGRA32MonitorButtonClick"/>
+                        <MenuItem Header="Adatkiválasztó" Click="AddNewImageBufferBGRA32DataSelectorButtonClick"/>
+                        <MenuItem Header="Toldó" Click="AddNewImageBufferBGRA32ExtensionButtonClick"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Csoport" Click="AddNewGroupButtonClick"/>
+                    <MenuItem Header="Elágazás" Click="AddNewBranchButtonClick"/>
+
+                </ContextMenu>
+            </ve:BlocksEditor.ContextMenu>
+
+        </ve:BlocksEditor>
+
+        <Grid>
+            <Grid.Resources>
+                <ResourceDictionary Source="pack://application:,,,/Common;component/Resource/VectorIcons.xaml"/>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <cc:IconContainer Grid.Column="0" Visible="{Binding ElementName=blocksEditor, Path=IsFocused}">
+                    <Image Source="{StaticResource KeyboardDrawingImage}"/>
+                </cc:IconContainer>
+            </Grid>
+        </Grid>
+
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,92 @@
+﻿<Window x:Class="BalanceApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BalanceApp"
+        xmlns:converters="clr-namespace:BalanceApp.Converters"
+        mc:Ignorable="d"
+        Title="Balance V1" Height="450" Width="450">
+
+    <Window.Resources>
+        <converters:WeightDisplayConverter x:Key="WeightDisplayConverter"/>
+        <converters:RawDisplayConverter x:Key="RawDisplayConverter"/>
+        <converters:BoolToRedGreenConverter x:Key="BoolToRedGreenConverter"/>
+        <converters:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Expander Header="Calibration" Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Grid.Row="0" Header="Raw values:">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="ch0:" Margin="5"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Balance.IrawValue0, Converter={StaticResource RawDisplayConverter}}" Margin="5"/>
+                        <TextBlock Grid.Column="3" Text="ch1:" Margin="5"/>
+                        <TextBlock Grid.Column="4" Text="{Binding Balance.IrawValue1, Converter={StaticResource RawDisplayConverter}}" Margin="5"/>
+                        <TextBlock Grid.Column="6" Text="ch2:" Margin="5"/>
+                        <TextBlock Grid.Column="7" Text="{Binding Balance.IrawValue2, Converter={StaticResource RawDisplayConverter}}" Margin="5"/>
+                        <TextBlock Grid.Column="9" Text="ch3:" Margin="5"/>
+                        <TextBlock Grid.Column="10" Text="{Binding Balance.IrawValue3, Converter={StaticResource RawDisplayConverter}}" Margin="5"/>
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="Calibrate to:" Click="CalibrateToButtonClick" Margin="5"/>
+                    <TextBox Grid.Column="1" Text="{Binding Balance.CalibrationWeight, Mode=TwoWay}" HorizontalContentAlignment="Center" Margin="5"/>
+                    <TextBlock Grid.Column="2" Text="kg" Margin="5"/>
+                </Grid>
+            </Grid>
+        </Expander>
+
+        <GroupBox Grid.Row="1" Header="Measured weight:" Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Balance.MeasuredWeight, Converter={StaticResource WeightDisplayConverter}}" FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Converter={StaticResource HeightToFontSizeConverter}}" Margin="5"/>
+                <TextBlock Text="kg" FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Converter={StaticResource HeightToFontSizeConverter}}" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Header="Status:" Margin="5">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Ellipse Width="20" Height="20" Fill="{Binding Balance.MeasureOk,Converter={StaticResource BoolToRedGreenConverter}}" Margin="5"/>
+                <TextBlock Text="measure ok" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <Button Grid.Row="3" Content="Zero" Margin="10" Height="50" Click="ZeroButtonClick"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Common.GetDriveFreeSpace.GetDriveFreeSpaceV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Common.GetDriveFreeSpace"
+             mc:Ignorable="d" d:DesignWidth="500"
+             xmlns:conv="clr-namespace:Common.Converters">
+
+    <UserControl.Resources>
+        <conv:DoubleRoundConverter3 x:Key="DoubleRoundConverter3"/>
+    </UserControl.Resources>
+    
+    <GroupBox Header="{Binding LanguageDC.FreeSpace.Value, FallbackValue=FreeSpace}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ProgressBar Minimum="0" Maximum="{Binding TotalBytes.Value, FallbackValue=10}" Value="{Binding UsedBytes.Value, FallbackValue=7.5}" Foreground="{Binding ProgressBarColor.Value,FallbackValue=Green}" Height="10" Margin="5"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding LanguageDC.FreeColon.Value,FallbackValue=Free:}" Margin="5"/>
+                <TextBlock Grid.Column="1" Text="{Binding Free.Value, FallbackValue=5, Converter={StaticResource DoubleRoundConverter3}}" Margin="0,5,0,0"/>
+                <TextBlock Grid.Column="2" Text="{Binding FreeUnitOfMeasure.Value,FallbackValue=Gb}" Margin="0,5,0,0"/>
+
+                <TextBlock Grid.Column="4" Text="{Binding LanguageDC.UsedColon.Value,FallbackValue=Used:}" Margin="5"/>
+                <TextBlock Grid.Column="5" Text="{Binding Used.Value,FallbackValue=5, Converter={StaticResource DoubleRoundConverter3}}" Margin="0,5,0,0"/>
+                <TextBlock Grid.Column="6" Text="{Binding UsedUnitOfMeasure.Value,FallbackValue=Gb}" Margin="0,5,0,0"/>
+
+                <TextBlock Grid.Column="8" Text="{Binding LanguageDC.TotalColon.Value,FallbackValue=Total:}" Margin="5"/>
+                <TextBlock Grid.Column="9" Text="{Binding Total.Value,FallbackValue=10, Converter={StaticResource DoubleRoundConverter3}}" Margin="0,5,0,0"/>
+                <TextBlock Grid.Column="10" Text="{Binding TotalUnitOfMeasure.Value,FallbackValue=Gb}" Margin="0,5,0,0"/>
+            </Grid>
+            
+        </Grid>
+    </GroupBox>
+</UserControl>

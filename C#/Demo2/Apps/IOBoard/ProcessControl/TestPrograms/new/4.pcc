@@ -1,0 +1,54 @@
+Init:
+{
+    delay = 100
+}
+
+Loop:
+{
+    IOBoard.72F7B0DD.DO.13 = Low
+    IOBoard.72F7B0DD.DO.0 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.0 = Low
+    IOBoard.72F7B0DD.DO.1 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.1 = Low
+    IOBoard.72F7B0DD.DO.2 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.2 = Low
+    IOBoard.72F7B0DD.DO.3 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.3 = Low
+    IOBoard.72F7B0DD.DO.4 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.4 = Low
+    IOBoard.72F7B0DD.DO.5 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.5 = Low
+    IOBoard.72F7B0DD.DO.6 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.6 = Low
+    IOBoard.72F7B0DD.DO.7 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.7 = Low
+    IOBoard.72F7B0DD.DO.8 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.8 = Low
+    IOBoard.72F7B0DD.DO.9 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.9 = Low
+    IOBoard.72F7B0DD.DO.10 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.10 = Low
+    IOBoard.72F7B0DD.DO.11 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.11 = Low
+    IOBoard.72F7B0DD.DO.12 = High
+    WaitMs(delay)
+    IOBoard.72F7B0DD.DO.12 = Low
+    IOBoard.72F7B0DD.DO.13 = High
+    WaitMs(delay)
+}
+
+
+
+

@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ImageProcess.Modules.ModulesV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImageProcess.Modules"
+             xmlns:conv="clr-namespace:Common.Converters;assembly=Common"
+             xmlns:countermodule="clr-namespace:ImageProcess.Modules.Counter"
+             mc:Ignorable="d" d:DesignWidth="500">
+
+    <UserControl.Resources>
+        <conv:BoolToBrushRedGreenConverter x:Key="BoolToBrushRedGreenConverter"/>
+    </UserControl.Resources>
+
+    <GroupBox Header="{Binding LanguageDC.ModulesColon.CurrentValue, FallbackValue=Modules:}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" ItemsSource="{Binding Modules.CurrentValue}" SelectedItem="{Binding SelectedModule.CurrentValue}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch" Margin="5">
+                <ListView.Resources>
+                    <DataTemplate DataType="{x:Type countermodule:CounterDC}">
+                        <countermodule:CounterV/>
+                    </DataTemplate>
+                </ListView.Resources>
+            </ListView>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="{Binding LanguageDC.AddModuleColon.CurrentValue, FallbackValue=Add_module:}" Margin="5">
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <ComboBox Grid.Row="0" ItemsSource="{Binding AvailableModules.CurrentValue}" SelectedItem="{Binding SelectedNewModule.CurrentValue}" Margin="5">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="10" Height="10" Fill="{Binding IsEnable, FallbackValue=Green, Converter={StaticResource BoolToBrushRedGreenConverter}}" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                                        <TextBlock Text="{Binding Name.CurrentValue}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Button Grid.Row="1" Content="{Binding LanguageDC.Add.CurrentValue, FallbackValue=Add}" Margin="5" Click="AddNewModuleButtonClick"/>
+                        
+                    </Grid>
+                </GroupBox>
+
+                <Button Grid.Column="1" Content="{Binding LanguageDC.RemoveSelected.CurrentValue, FallbackValue=Remove_selected}" Margin="5" VerticalAlignment="Center" Click="RemoveSelectedModuleButtonClick"/>
+
+            </Grid>
+        </Grid>
+    </GroupBox>
+</UserControl>

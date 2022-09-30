@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="UCVisionApp.Modules.Counter.CounterV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UCVisionApp.Modules.Counter"
+             xmlns:imageviewcontrol="clr-namespace:Common.Controls.PanZoomImageView;assembly=Common"
+             xmlns:counter="clr-namespace:ImageProcess.Modules.Counter;assembly=ImageProcess">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" MinWidth="300"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*" MinWidth="300"/>
+        </Grid.ColumnDefinitions>
+
+        <imageviewcontrol:PanZoomImageViewV Grid.Column="0" Source="{Binding ResultImage.Value}" Margin="5"/>
+
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch">
+            <GridSplitter.Background>
+                <LinearGradientBrush StartPoint="0,.5" EndPoint="1,.5">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="Blue" Offset=".5"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </GridSplitter.Background>
+        </GridSplitter>
+
+        <counter:CounterModuleV Grid.Column="2" DataContext="{Binding CounterModuleDC}"/>
+
+    </Grid>
+</UserControl>

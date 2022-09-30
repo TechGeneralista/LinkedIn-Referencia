@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="VisualBlocks.Module.TypeInt.IntExtensionV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ve="clr-namespace:CustomControl.VisualEditor;assembly=CustomControl">
+
+    <ve:BlockItem Left="{Binding Left}" Top="{Binding Top}" IsSelected="{Binding IsSelected}" ShowStatus="False">
+
+        <ve:BlockItem.TriggerInputs>
+            <ve:BlockItemTriggerInput DataContext="{Binding BlockItemTriggerInputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.TriggerInputs>
+        <ve:BlockItem.TriggerOutputs>
+            <ve:BlockItemTriggerOutput DataContext="{Binding BlockItemTriggerOutputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.TriggerOutputs>
+
+        <ve:BlockItem.DataInputs>
+            <ve:BlockItemDataInput DataContext="{Binding BlockItemDataInputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.DataInputs>
+        <ve:BlockItem.DataOutputs>
+            <ve:BlockItemDataOutput DataContext="{Binding BlockItemDataOutputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.DataOutputs>
+
+    </ve:BlockItem>
+</UserControl>

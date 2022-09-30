@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="UCVisionApp.Settings.SettingsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UCVisionApp.Settings"
+             xmlns:lang="clr-namespace:Common.Language;assembly=Common"
+             xmlns:remote="clr-namespace:Common.Communication.SimpleTCP.Server.MultiClient;assembly=Common"
+             xmlns:loadsave="clr-namespace:UCVisionApp.Settings.LoadSave"
+             xmlns:saveresults="clr-namespace:Common.SaveResult;assembly=Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+
+            <lang:LanguageV DataContext="{Binding LanguageDC}" HorizontalAlignment="Left" Margin="5"/>
+            <loadsave:LoadSaveV DataContext="{Binding LoadSaveDC}" Margin="5"/>
+            <saveresults:SaveResultV DataContext="{Binding SaveResultDC}" Margin="5"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+
+            <remote:TCPServerMultiClientV DataContext="{Binding TCPServerMultiClientDC}" Margin="5"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

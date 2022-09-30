@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="VisualBlocks.Module.Branch.BranchV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ve="clr-namespace:CustomControl.VisualEditor;assembly=CustomControl">
+
+    <ve:BlockItem ModuleName="Elágazás" Left="{Binding Left}" Top="{Binding Top}" IsSelected="{Binding IsSelected}" ShowStatus="True" ErrorOccurred="{Binding ErrorOccured}" Message="{Binding Message}">
+
+        <ve:BlockItem.TriggerInputs>
+            <ve:BlockItemTriggerInput DataContext="{Binding BlockItemTriggerInputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.TriggerInputs>
+        <ve:BlockItem.TriggerOutputs>
+            <ve:BlockItemTriggerOutput DataContext="{Binding BlockItemTriggerOutputDC_True}" OutputName="Igaz" Active="{Binding Active}"/>
+            <ve:BlockItemTriggerOutput DataContext="{Binding BlockItemTriggerOutputDC_False}" OutputName="Hamis" Active="{Binding Active}"/>
+            <ve:BlockItemTriggerOutput DataContext="{Binding BlockItemTriggerOutputDC_Then}" OutputName="Ezután" Active="{Binding Active}"/>
+        </ve:BlockItem.TriggerOutputs>
+
+
+        <ve:BlockItem.DataInputs>
+            <ve:BlockItemDataInput DataContext="{Binding BlockItemDataInputDC}" Active="{Binding Active}"/>
+        </ve:BlockItem.DataInputs>
+
+    </ve:BlockItem>
+</UserControl>

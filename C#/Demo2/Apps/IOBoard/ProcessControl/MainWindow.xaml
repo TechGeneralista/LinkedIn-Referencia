@@ -1,0 +1,41 @@
+﻿<Window x:Class="ProcessControlApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessControlApp"
+        xmlns:iobview="clr-namespace:IOBoard.View"
+        xmlns:iobmonitor="clr-namespace:IOBoard.View.Monitor"
+        xmlns:editor="clr-namespace:Editor"
+        xmlns:userprogram="clr-namespace:UserProgram"
+        mc:Ignorable="d"
+        Title="Process Control V2.0" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <editor:EditorView Grid.Row="0" Margin="5"/>
+            <userprogram:InterpreterView Grid.Row="1" Margin="5"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <iobmonitor:IOBoardMonitorListView Grid.Row="0"/>
+            <iobview:IOBoardConnectionStatusView Grid.Row="1"/>
+
+        </Grid>
+        
+    </Grid>
+</Window>

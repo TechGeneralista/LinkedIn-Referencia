@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="UCVisionApp.ImageSourceDevice.ImageSourceDeviceV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:trigger="clr-namespace:Common.Trigger;assembly=Common"
+             xmlns:imageviewcontrol="clr-namespace:Common.Controls.PanZoomImageView;assembly=Common"
+             xmlns:views="clr-namespace:Common.Views;assembly=Common"
+             xmlns:logicalevaluator="clr-namespace:LogicalEvaluator;assembly=LogicalEvaluator"
+             xmlns:opticaldistortioncorrection="clr-namespace:ImageProcess.OpticalDistortionCorrection;assembly=ImageProcess"
+             xmlns:imagecapturedevice="clr-namespace:ImageCaptureDevice;assembly=ImageCaptureDevice">
+
+    <TabControl SelectedIndex="{Binding SelectedTabItemIndex.Value}" Background="Transparent">
+
+        <TabItem Header="{Binding LanguageDC.ImageSourceDevice.Value, FallbackValue=ImageSourceDevice}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" MinWidth="300"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*" MinWidth="300"/>
+                </Grid.ColumnDefinitions>
+
+                <imageviewcontrol:PanZoomImageViewV Grid.Column="0" Source="{Binding ImageProcessSourceDC.ColorImage.Value}" Margin="5"/>
+
+                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch">
+                    <GridSplitter.Background>
+                        <LinearGradientBrush StartPoint="0,.5" EndPoint="1,.5">
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="Blue" Offset=".5"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </GridSplitter.Background>
+                </GridSplitter>
+
+                <TabControl Grid.Column="2" SelectedIndex="{Binding InternalSelectedTabItemIndex.Value}" Background="Transparent">
+
+                    <TabItem Header="{Binding LanguageDC.ImageOptimization.Value,FallbackValue=ImageOptimization}">
+                        <ScrollViewer Grid.Column="2">
+                            <StackPanel Orientation="Vertical" Margin="5">
+                                <opticaldistortioncorrection:OpticalDistortionCorrectionV DataContext="{Binding ImageProcessSourceDC.OpticalDistortionCorrectionDC}"/>
+                                <imagecapturedevice:ImageCaptureDevicePropertiesV DataContext="{Binding ImageCaptureDevice}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <TabItem Header="{Binding LanguageDC.Inspections.Value,FallbackValue=Inspections}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ListView Grid.Row="0" ItemsSource="{Binding Children.Value}" SelectedItem="{Binding SelectedChild.Value}" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch" Margin="5" Background="Transparent">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <views:IHasIdResultV/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="{Binding LanguageDC.AddNew.Value, FallbackValue=Add_new}" Margin="5" Padding="5" Click="AddNewInspectionButtonClick"/>
+                                <Button Content="{Binding LanguageDC.RemoveSelected.Value, FallbackValue=Remove_selected}" Margin="5" Padding="5" Click="RemoveSelectedInspectionButtonClick"/>
+                                <Button Content="{Binding LanguageDC.RemoveAll.Value, FallbackValue=Remove_all}" Margin="5" Padding="5" Click="RemoveAllInspectionsButtonClick"/>
+                            </StackPanel>
+
+                            <trigger:TriggerVerticalV Grid.Row="2" DataContext="{Binding TriggerDC}" Margin="5"/>
+                        </Grid>
+                    </TabItem>
+                
+            </TabControl>
+                
+            </Grid>
+
+        </TabItem>
+
+        <TabItem Header="{Binding LanguageDC.LogicalEvaluation.Value, FallbackValue=Logical_evaluation}">
+            <logicalevaluator:LogicalEvaluatorV DataContext="{Binding LogicalEvaluatorDC}"/>
+        </TabItem>
+
+    </TabControl>
+</UserControl>

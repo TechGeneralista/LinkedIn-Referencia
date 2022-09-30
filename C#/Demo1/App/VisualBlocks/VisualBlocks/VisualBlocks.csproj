@@ -1,0 +1,667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A31C1BA-1C47-4F0E-A00C-B21EBB6B2929}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VisualBlocks</RootNamespace>
+    <AssemblyName>VisualBlocks</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Module\Base\BlockItemDataConnectionDC.cs" />
+    <Compile Include="Module\Base\BlockItemGroupDC.cs" />
+    <Compile Include="Module\Base\IInitializable.cs" />
+    <Compile Include="Module\Base\ISelectable.cs" />
+    <Compile Include="Module\DependencyParams.cs" />
+    <Compile Include="Module\ImageSource\ICanShowDeviceSelector.cs" />
+    <Compile Include="Module\Trigger\TriggerSerialDC.cs" />
+    <Compile Include="Module\Trigger\TriggerSerialV.xaml.cs">
+      <DependentUpon>TriggerSerialV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Trigger\TriggerInitializeDC.cs" />
+    <Compile Include="Module\Trigger\TriggerInitializeV.xaml.cs">
+      <DependentUpon>TriggerInitializeV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Trigger\TriggerExtensionDC.cs" />
+    <Compile Include="Module\Trigger\TriggerContinousDC.cs" />
+    <Compile Include="Module\Trigger\TriggerDelayDC.cs" />
+    <Compile Include="Module\Trigger\TriggerExtensionV.xaml.cs">
+      <DependentUpon>TriggerExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Trigger\TriggerContinousV.xaml.cs">
+      <DependentUpon>TriggerContinousV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Trigger\TriggerDelayV.xaml.cs">
+      <DependentUpon>TriggerDelayV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolExtensionDC.cs" />
+    <Compile Include="Module\TypeBool\BoolExtensionV.xaml.cs">
+      <DependentUpon>BoolExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolOperationDC.cs" />
+    <Compile Include="Module\TypeBool\BoolNotDC.cs" />
+    <Compile Include="Module\TypeBool\BoolOperationV.xaml.cs">
+      <DependentUpon>BoolOperationV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolNotV.xaml.cs">
+      <DependentUpon>BoolNotV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolContainerReadDC.cs" />
+    <Compile Include="Module\TypeBool\BoolContainerReadV.xaml.cs">
+      <DependentUpon>BoolContainerReadV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolContainerWriteDC.cs" />
+    <Compile Include="Module\TypeBool\BoolContainerWriteV.xaml.cs">
+      <DependentUpon>BoolContainerWriteV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolContainerDC.cs" />
+    <Compile Include="Module\TypeBool\BoolContainerExtensionDC.cs" />
+    <Compile Include="Module\TypeBool\BoolContainerExtensionV.xaml.cs">
+      <DependentUpon>BoolContainerExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatContainerDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatContainerExtensionDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatContainerExtensionV.xaml.cs">
+      <DependentUpon>FloatContainerExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntContainerExtensionDC.cs" />
+    <Compile Include="Module\TypeInt\IntContainerExtensionV.xaml.cs">
+      <DependentUpon>IntContainerExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringContainerExtensionDC.cs" />
+    <Compile Include="Module\TypeString\StringContainerExtensionV.xaml.cs">
+      <DependentUpon>StringContainerExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringContainerDC.cs" />
+    <Compile Include="Module\TypeInt\IntContainerDC.cs" />
+    <Compile Include="Module\TypeBool\BoolContainerV.xaml.cs">
+      <DependentUpon>BoolContainerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatContainerV.xaml.cs">
+      <DependentUpon>FloatContainerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringContainerV.xaml.cs">
+      <DependentUpon>StringContainerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntContainerV.xaml.cs">
+      <DependentUpon>IntContainerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatExtensionDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatExtensionV.xaml.cs">
+      <DependentUpon>FloatExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatDataSelectorDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatDataSelectorV.xaml.cs">
+      <DependentUpon>FloatDataSelectorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatMathOperationDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatMathOperationV.xaml.cs">
+      <DependentUpon>FloatMathOperationV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatRandomDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatRandomV.xaml.cs">
+      <DependentUpon>FloatRandomV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatContainerReadDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatContainerReadV.xaml.cs">
+      <DependentUpon>FloatContainerReadV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatContainerWriteDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatContainerWriteV.xaml.cs">
+      <DependentUpon>FloatContainerWriteV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32ExtensionDC.cs" />
+    <Compile Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32ExtensionV.xaml.cs">
+      <DependentUpon>ImageBufferBGRA32ExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32DataSelectorDC.cs" />
+    <Compile Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32DataSelectorV.xaml.cs">
+      <DependentUpon>ImageBufferBGRA32DataSelectorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntContainerReadDC.cs" />
+    <Compile Include="Module\TypeInt\IntContainerReadV.xaml.cs">
+      <DependentUpon>IntContainerReadV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntContainerWriteDC.cs" />
+    <Compile Include="Module\TypeInt\IntContainerWriteV.xaml.cs">
+      <DependentUpon>IntContainerWriteV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntExtensionDC.cs" />
+    <Compile Include="Module\TypeInt\IntExtensionV.xaml.cs">
+      <DependentUpon>IntExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntContainerReadWriteDC.cs" />
+    <Compile Include="Module\TypeInt\IntContainerReadWriteV.xaml.cs">
+      <DependentUpon>IntContainerReadWriteV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntRandomDC.cs" />
+    <Compile Include="Module\TypeInt\IntMathOperationDC.cs" />
+    <Compile Include="Module\TypeInt\IntRandomV.xaml.cs">
+      <DependentUpon>IntRandomV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntMathOperationV.xaml.cs">
+      <DependentUpon>IntMathOperationV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntDataSelectorDC.cs" />
+    <Compile Include="Module\TypeInt\IntDataSelectorV.xaml.cs">
+      <DependentUpon>IntDataSelectorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringContainerReadDC.cs" />
+    <Compile Include="Module\TypeString\StringContainerReadV.xaml.cs">
+      <DependentUpon>StringContainerReadV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringContainerWriteDC.cs" />
+    <Compile Include="Module\TypeString\StringContainerWriteV.xaml.cs">
+      <DependentUpon>StringContainerWriteV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringExtensionDC.cs" />
+    <Compile Include="Module\TypeString\StringExtensionV.xaml.cs">
+      <DependentUpon>StringExtensionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringDataSelectorDC.cs" />
+    <Compile Include="Module\TypeString\StringDataSelectorV.xaml.cs">
+      <DependentUpon>StringDataSelectorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Project\ProjectDC.cs" />
+    <Compile Include="Project\ProjectInfoArgs.cs" />
+    <Compile Include="Project\ProjectV.xaml.cs">
+      <DependentUpon>ProjectV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsDC.cs" />
+    <Compile Include="Settings\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Toolbar\ToolbarDC.cs" />
+    <Compile Include="Toolbar\ToolbarV.xaml.cs">
+      <DependentUpon>ToolbarV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualEditor\VisualEditorDC.cs" />
+    <Compile Include="VisualEditor\VisualEditorV.xaml.cs">
+      <DependentUpon>VisualEditorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowTitleDC.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\MainDC.cs" />
+    <Compile Include="Main\MainV.xaml.cs">
+      <DependentUpon>MainV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Branch\BranchDC.cs" />
+    <Compile Include="Module\Branch\BranchV.xaml.cs">
+      <DependentUpon>BranchV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeBool\BoolCompareDC.cs" />
+    <Compile Include="Module\TypeBool\BoolCompareV.xaml.cs">
+      <DependentUpon>BoolCompareV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatCompareDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatCompareV.xaml.cs">
+      <DependentUpon>FloatCompareV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntCompareDC.cs" />
+    <Compile Include="Module\TypeInt\IntCompareV.xaml.cs">
+      <DependentUpon>IntCompareV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringCompareDC.cs" />
+    <Compile Include="Module\TypeString\StringCompareV.xaml.cs">
+      <DependentUpon>StringCompareV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Base\BlockItemTriggerInputDC.cs" />
+    <Compile Include="Module\Base\BlockItemTriggerConnectionDC.cs" />
+    <Compile Include="Module\Base\BlockItemDataInputDC.cs" />
+    <Compile Include="Module\Base\BlockItemTriggerOutputDC.cs" />
+    <Compile Include="Module\Base\BlockItemDataOutputDC.cs" />
+    <Compile Include="Module\Base\BlockItemDC.cs" />
+    <Compile Include="Module\Base\ICanKeyPress.cs" />
+    <Compile Include="Module\Base\IShutdownable.cs" />
+    <Compile Include="Module\TypeBool\BoolConstantDC.cs" />
+    <Compile Include="Module\TypeBool\BoolConstantV.xaml.cs">
+      <DependentUpon>BoolConstantV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatConstantDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatConstantV.xaml.cs">
+      <DependentUpon>FloatConstantV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntConstantDC.cs" />
+    <Compile Include="Module\TypeInt\IntConstantV.xaml.cs">
+      <DependentUpon>IntConstantV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringConstantDC.cs" />
+    <Compile Include="Module\TypeString\StringConstantV.xaml.cs">
+      <DependentUpon>StringConstantV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\ImageSource\IHasImageCaptureDevice.cs" />
+    <Compile Include="Module\ImageSource\UniversalVideoClass\UniversalVideoClassDC.cs" />
+    <Compile Include="Module\ImageSource\UniversalVideoClass\UniversalVideoClassV.xaml.cs">
+      <DependentUpon>UniversalVideoClassV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Base\TriggerActionArgs.cs" />
+    <Compile Include="Module\TypeBool\BoolMonitorDC.cs" />
+    <Compile Include="Module\TypeBool\BoolMonitorV.xaml.cs">
+      <DependentUpon>BoolMonitorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeFloat\FloatMonitorDC.cs" />
+    <Compile Include="Module\TypeFloat\FloatMonitorV.xaml.cs">
+      <DependentUpon>FloatMonitorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32MonitorDC.cs" />
+    <Compile Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32MonitorV.xaml.cs">
+      <DependentUpon>ImageBufferBGRA32MonitorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeInt\IntMonitorDC.cs" />
+    <Compile Include="Module\TypeInt\IntMonitorV.xaml.cs">
+      <DependentUpon>IntMonitorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\TypeString\StringMonitorDC.cs" />
+    <Compile Include="Module\TypeString\StringMonitorV.xaml.cs">
+      <DependentUpon>StringMonitorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Trigger\TriggerButtonDC.cs" />
+    <Compile Include="Module\Trigger\TriggerButtonV.xaml.cs">
+      <DependentUpon>TriggerButtonV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Trigger\TriggerKeyPressDC.cs" />
+    <Compile Include="Module\Trigger\TriggerKeyPressV.xaml.cs">
+      <DependentUpon>TriggerKeyPressV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Main\MainV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Branch\BranchV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Trigger\TriggerSerialV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\Trigger\TriggerInitializeV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\Trigger\TriggerExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\Trigger\TriggerContinousV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\Trigger\TriggerDelayV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolCompareV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolOperationV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolNotV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolContainerReadV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolContainerWriteV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolContainerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeBool\BoolContainerExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatContainerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatContainerExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntContainerExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringContainerExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringContainerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntContainerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatCompareV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatDataSelectorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatMathOperationV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatRandomV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatContainerReadV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatContainerWriteV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32ExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32DataSelectorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntContainerReadV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntContainerWriteV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntContainerReadWriteV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntRandomV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntMathOperationV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntCompareV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntDataSelectorV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\TypeString\StringContainerReadV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringContainerWriteV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringExtensionV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringDataSelectorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringCompareV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\TypeBool\BoolConstantV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatConstantV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntConstantV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringConstantV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\ImageSource\UniversalVideoClass\UniversalVideoClassV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\TypeBool\BoolMonitorV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\TypeFloat\FloatMonitorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeImageBufferBGRA32\ImageBufferBGRA32MonitorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeInt\IntMonitorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\TypeString\StringMonitorV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Trigger\TriggerButtonV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Module\Trigger\TriggerKeyPressV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Project\ProjectV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Toolbar\ToolbarV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisualEditor\VisualEditorV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CodeBase\Common\Common.csproj">
+      <Project>{5d9df299-2d46-4904-bd60-f535030dfadb}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CodeBase\Compute\Compute.csproj">
+      <Project>{9B2C7882-51E0-4418-BF80-E3020BD1555C}</Project>
+      <Name>Compute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CodeBase\CustomControl\CustomControl.csproj">
+      <Project>{bc4402c2-3278-4885-8798-1b6fda57c0aa}</Project>
+      <Name>CustomControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CodeBase\ImageCaptureDevice\ImageCaptureDevice.csproj">
+      <Project>{983e8fd2-65be-43cb-9f45-5bc8f999a001}</Project>
+      <Name>ImageCaptureDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CodeBase\ImageProcess\ImageProcess.csproj">
+      <Project>{6f03cd76-033a-4831-8a91-7989968c3b77}</Project>
+      <Name>ImageProcess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

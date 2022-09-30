@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="CollisionBorder_Static_Color">#00000000</Color>
+    <Color x:Key="CollisionBorder_Limit_Color">#FF0000</Color>
+    <Color x:Key="SelectionBorder_Static_Color">#00000000</Color>
+    <Color x:Key="SelectionBorder_Selected_Color">#FF9900</Color>
+
+    <Color x:Key="Static_Color">#00000000</Color>
+    <Color x:Key="Active_Color">#FF0000</Color>
+    <Color x:Key="MouseEnter_Color">#FF9900</Color>
+
+    <Color x:Key="Data_Object_Static_Color">#00FF00</Color>
+    <Color x:Key="Trigger_Static_Color">#00bcd4</Color>
+    <Color x:Key="Data_String_Static_Color">#FF9900</Color>
+    <Color x:Key="Data_Int_Static_Color">#0000FF</Color>
+    <Color x:Key="Data_Float_Static_Color">#0099FF</Color>
+    <Color x:Key="Data_Bool_Static_Color">#FF00FF</Color>
+
+</ResourceDictionary>

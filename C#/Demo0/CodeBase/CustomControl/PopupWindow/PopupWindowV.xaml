@@ -1,0 +1,89 @@
+﻿<Window x:Class="CustomControl.PopupWindow.PopupWindowV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="LoadingV" Height="80" Width="400" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner">
+
+    <Border BorderBrush="Black" BorderThickness="1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Path Grid.Column="0" Stroke="Blue" StrokeThickness="3" Width="80">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding Angle0.CurrentValue}" CenterX="40" CenterY="40"/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigureCollection>
+                                <PathFigure StartPoint="20,40">
+                                    <PathFigure.Segments>
+                                        <PathSegmentCollection>
+                                            <ArcSegment Size="5,5" IsLargeArc="True" SweepDirection="CounterClockwise" Point="60,40" />
+                                        </PathSegmentCollection>
+                                    </PathFigure.Segments>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <Path Grid.Column="0" Stroke="Green" StrokeThickness="3" Width="80">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding Angle1.CurrentValue}" CenterX="40" CenterY="40"/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigureCollection>
+                                <PathFigure StartPoint="25,40">
+                                    <PathFigure.Segments>
+                                        <PathSegmentCollection>
+                                            <ArcSegment Size="4,4" IsLargeArc="True" SweepDirection="CounterClockwise" Point="55,40" />
+                                        </PathSegmentCollection>
+                                    </PathFigure.Segments>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <Path Grid.Column="0" Stroke="Red" StrokeThickness="3" Width="80">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding Angle2.CurrentValue}" CenterX="40" CenterY="40"/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigureCollection>
+                                <PathFigure StartPoint="30,40">
+                                    <PathFigure.Segments>
+                                        <PathSegmentCollection>
+                                            <ArcSegment Size="4,4" IsLargeArc="True" SweepDirection="CounterClockwise" Point="50,40" />
+                                        </PathSegmentCollection>
+                                    </PathFigure.Segments>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <TextBlock Grid.Column="1" Text="{Binding Message.CurrentValue}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        </Grid>
+    </Border>
+</Window>

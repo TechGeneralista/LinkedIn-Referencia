@@ -1,0 +1,118 @@
+﻿<Window x:Class="UCVisionApp.Main.MainV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:UCVisionApp"
+        xmlns:levelbase="clr-namespace:UCVisionApp.LevelBase"
+        Title="{Binding TitleText.Value}"
+        Width="1280" Height="720" WindowStartupLocation="CenterScreen"
+        xmlns:log="clr-namespace:Common.Log;assembly=Common"
+        xmlns:imagesources="clr-namespace:UCVisionApp.ImageSourceDevices"
+        xmlns:imagesource="clr-namespace:UCVisionApp.ImageSourceDevice"
+        xmlns:inspection="clr-namespace:UCVisionApp.Inspection"
+        xmlns:counter="clr-namespace:UCVisionApp.Modules.Counter"
+        xmlns:settings="clr-namespace:UCVisionApp.Settings"
+        Loaded="Window_Loaded">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="White" Offset="0.8"/>
+            <GradientStop Color="DarkGray" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="100"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="5*" MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+
+            <TreeView Grid.Column="0" ItemsSource="{Binding Children.Value}" Background="Transparent" SelectedItemChanged="TreeViewSelectedItemChanged" Loaded="TreeView_Loaded">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="True"/>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+
+                <TreeView.Resources>
+
+                    <!--<SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}"/>-->
+
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black" />
+
+                    <HierarchicalDataTemplate DataType="{x:Type imagesources:ImageSourceDevicesDC}" ItemsSource="{Binding Children.Value}">
+                        <levelbase:LevelBaseV/>
+                    </HierarchicalDataTemplate>
+
+                    <HierarchicalDataTemplate DataType="{x:Type imagesource:ImageSourceDeviceDC}" ItemsSource="{Binding Children.Value}">
+                        <levelbase:LevelBaseV/>
+                    </HierarchicalDataTemplate>
+
+                    <HierarchicalDataTemplate DataType="{x:Type inspection:InspectionDC}" ItemsSource="{Binding Children.Value}">
+                        <levelbase:LevelBaseV/>
+                    </HierarchicalDataTemplate>
+
+                    <DataTemplate DataType="{x:Type counter:CounterDC}">
+                        <levelbase:LevelBaseV/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type settings:SettingsDC}">
+                        <settings:SettingsMiniatureV/>
+                    </DataTemplate>
+
+                </TreeView.Resources>
+            </TreeView>
+
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch">
+                <GridSplitter.Background>
+                    <LinearGradientBrush StartPoint="0,.5" EndPoint="1,.5">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Blue" Offset=".5"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </GridSplitter.Background>
+            </GridSplitter>
+
+            <ContentControl Grid.Column="2" Content="{Binding CurrentContent.Value}">
+                <ContentControl.Resources>
+
+                    <DataTemplate DataType="{x:Type imagesources:ImageSourceDevicesDC}">
+                        <imagesources:ImageSourceDevicesV/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type imagesource:ImageSourceDeviceDC}">
+                        <imagesource:ImageSourceDeviceV/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type inspection:InspectionDC}">
+                        <inspection:InspectionV/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type counter:CounterDC}">
+                        <counter:CounterV/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type settings:SettingsDC}">
+                        <settings:SettingsV/>
+                    </DataTemplate>
+
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
+
+        <log:LogV DataContext="{Binding LogDC}" Grid.Row="1"/>
+    </Grid>
+</Window>

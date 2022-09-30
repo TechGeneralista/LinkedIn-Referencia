@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="UniCamApp.Tasks.ColorArea.ColorAreaMiniatureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:UniCamApp.Converters"
+             mc:Ignorable="d" 
+             d:DesignWidth="500">
+
+    <UserControl.Resources>
+        <conv:BoolToBrushRedGreenConverter x:Key="BoolToBrushRedGreenConverter"/>
+        <conv:BoolToStringNokOkConverter x:Key="BoolToStringNokOkConverter"/>
+        <conv:RoundFloatConverter x:Key="RoundFloatConverter"/>
+    </UserControl.Resources>
+
+    <Border BorderBrush="{Binding Result.Value, Converter={StaticResource BoolToBrushRedGreenConverter}}" BorderThickness="5" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Source="{Binding ResultImage.Value}" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="100" Height="100" Margin="5"/>
+
+            <Grid Grid.Column="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBlock Text="Típus:" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding TypeName}" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="Id:" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Id.Value}" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Text="Eredmény:" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock Width="60" Text="{Binding Result.Value, Converter={StaticResource BoolToStringNokOkConverter}}" FontSize="24" FontWeight="Bold" Margin="5,0,0,0" Foreground="{Binding Result.Value, Converter={StaticResource BoolToBrushRedGreenConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,21 @@
+Start:
+CycleDelay = 1
+PulseCounter = 0
+PulseLength = 100
+PulseHalfLength = PulseLength / 2
+Jump Program
+
+Program:
+Jump Pulse
+Loop Program
+
+Pulse:
+WaitMs CycleDelay
+If PulseCounter == 0
+5EF29E4A.DigitalOutput.0 = High
+If PulseCounter == PulseHalfLength
+5EF29E4A.DigitalOutput.0 = Low
+PulseCounter = PulseCounter + 1
+If PulseCounter == PulseLength
+PulseCounter = 0
+

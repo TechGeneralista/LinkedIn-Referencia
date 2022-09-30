@@ -1,0 +1,23 @@
+﻿<Window x:Class="VisualBlocks.Main.MainV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:toolbar="clr-namespace:VisualBlocks.Toolbar"
+        xmlns:project="clr-namespace:VisualBlocks.Project"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitleDC.Title, FallbackValue='Title'}" Width="1280" Height="720" 
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <toolbar:ToolbarV Grid.Row="0" DataContext="{Binding ToolbarDC}"/>
+        <project:ProjectV Grid.Row="1" DataContext="{Binding ProjectDC}"/>
+
+    </Grid>
+
+</Window>

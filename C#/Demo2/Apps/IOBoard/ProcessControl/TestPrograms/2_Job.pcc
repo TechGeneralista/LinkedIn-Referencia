@@ -1,0 +1,39 @@
+Start:
+Status = 0
+Jump Program
+
+Program:
+Jump Job
+Loop Program
+
+Job:
+If 5EF29E4A.DIR.0 == High
+Status = Status + 1
+Jump SetOutput
+
+SetOutput:
+If Status == 3
+Status = 0
+If Status == 0
+Jump Status0
+If Status == 1
+Jump Status1
+If Status == 2
+Jump Status2
+
+Status0:
+5EF29E4A.DigitalOutput.1 = High
+5EF29E4A.DigitalOutput.2 = Low
+5EF29E4A.DigitalOutput.3 = Low
+
+Status1:
+5EF29E4A.DigitalOutput.1 = Low
+5EF29E4A.DigitalOutput.2 = High
+5EF29E4A.DigitalOutput.3 = Low
+
+Status2:
+5EF29E4A.DigitalOutput.1 = Low
+5EF29E4A.DigitalOutput.2 = Low
+5EF29E4A.DigitalOutput.3 = High
+
+

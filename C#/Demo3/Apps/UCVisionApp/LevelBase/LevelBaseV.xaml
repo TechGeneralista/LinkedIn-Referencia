@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="UCVisionApp.LevelBase.LevelBaseV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:UCVisionApp.LevelBase"
+             xmlns:conv="clr-namespace:Common.Converters;assembly=Common">
+
+    <UserControl.Resources>
+        <conv:NullableBoolToBrushOrangeRedGreenConverter x:Key="NullableBoolToBrushOrangeRedGreenConverter"/>
+        <conv:BoolToBrushWhiteLightGrayConverter x:Key="BoolToBrushWhiteLightGrayConverter"/>
+        <conv:NullableBoolToStringNokOkConverter x:Key="NullableBoolToStringNokOkConverter"/>
+    </UserControl.Resources>
+
+    <Border BorderThickness="3" Background="{Binding IsSelected.Value, FallbackValue=White ,Converter={StaticResource BoolToBrushWhiteLightGrayConverter}}" BorderBrush="{Binding Result.Value, FallbackValue=Orange, Converter={StaticResource NullableBoolToBrushOrangeRedGreenConverter}}" CornerRadius="10" Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{Binding Name.Value, FallbackValue=Name}" Margin="5,0,5,0" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Text="{Binding Result.Value, FallbackValue=N/A, Converter={StaticResource NullableBoolToStringNokOkConverter}}" HorizontalAlignment="Center" Margin="5,0,5,0" Foreground="{Binding Result.Value, FallbackValue=Orange, Converter={StaticResource NullableBoolToBrushOrangeRedGreenConverter}}"/>
+            <TextBlock Grid.Row="2" Text="{Binding Id.Value, FallbackValue=xxxxxxxx}" Margin="5,0,5,0" HorizontalAlignment="Center"/>
+
+        </Grid>
+    </Border>
+</UserControl>

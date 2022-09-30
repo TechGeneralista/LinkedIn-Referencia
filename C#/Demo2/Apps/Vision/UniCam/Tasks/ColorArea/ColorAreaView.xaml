@@ -1,0 +1,237 @@
+﻿<UserControl x:Class="UniCamApp.Tasks.ColorArea.ColorAreaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rangesr="clr-namespace:UniCamApp.Control.Range"
+             xmlns:conv="clr-namespace:UniCamApp.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <conv:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
+        <conv:BoolToBrushRedGreenConverter x:Key="BoolToBrushRedGreenConverter"/>
+        <conv:BoolToStringNokOkConverter x:Key="BoolToStringNokOkConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <GroupBox Header="Kijelölt teület:" Margin="5">
+                <Image MaxHeight="300" Source="{Binding ResultImage.Value}" RenderOptions.BitmapScalingMode="NearestNeighbor" MouseDown="ImageMouseDown"/>
+            </GroupBox>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Id:" Margin="5"/>
+                <TextBox Grid.Column="1" Text="{Binding Id.Value}" Margin="5"/>
+                <CheckBox Grid.Column="2" Content="Monokróm" IsChecked="{Binding IsMonochrome.Value}" VerticalAlignment="Center" Margin="5"/>
+                <TextBlock Grid.Column="3" Width="60" Text="{Binding Result.Value, Converter={StaticResource BoolToStringNokOkConverter}}" FontWeight="Bold" Margin="5,0,0,0" Foreground="{Binding Result.Value, Converter={StaticResource BoolToBrushRedGreenConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+            <GroupBox Header="Színterület tulajdonságai:">
+                <StackPanel Orientation="Vertical">
+
+                    <GroupBox Header="Detektált pixelek színe:" Margin="5">
+                        <ComboBox ItemsSource="{Binding ResultDrawBackColor.Colors}" SelectedItem="{Binding ResultDrawBackColor.SelectedColor.Value}" HorizontalContentAlignment="Stretch" Margin="5">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Rectangle Height="20" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Fill="{Binding Path=., Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </GroupBox>
+
+                    <GroupBox Margin="5">
+                        <GroupBox.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Zajszűrő:"/>
+                                <TextBlock Text="{Binding BlurSize.Value}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </GroupBox.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding ElementName=blurSlider, Path=Minimum}" Margin="5"/>
+
+                            <Slider Grid.Column="1" x:Name="blurSlider" 
+                                                Minimum="0" 
+                                                Value="{Binding BlurSize.Value}" 
+                                                Maximum="16"
+                                                TickFrequency="1"
+                                                IsSnapToTickEnabled="True"
+                                                VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="2" Text="{Binding ElementName=blurSlider, Path=Maximum}" Margin="5"/>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Regisztrált színek:" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <ItemsControl Grid.Row="0" ItemsSource="{Binding RegisteredColors}" MinHeight="30">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Ellipse Stroke="Black" Width="20" Height="20" Margin="5" Fill="{Binding Path=., Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <Button Grid.Row="1" Content="Összes törlése" Click="ClearRegisteredColorsList" HorizontalAlignment="Center" Margin="5" Padding="5"/>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Margin="5">
+                        <GroupBox.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Színtolerancia:"/>
+                                <TextBlock Text="{Binding ColorTolerance.Value}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </GroupBox.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding ElementName=colorToleranceSlider, Path=Minimum}" Margin="5"/>
+
+                            <Slider Grid.Column="1" x:Name="colorToleranceSlider"
+                                                Minimum="0" 
+                                                Value="{Binding ColorTolerance.Value}" 
+                                                Maximum="255"
+                                                TickFrequency="1"
+                                                IsSnapToTickEnabled="True"
+                                                VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="2" Text="{Binding ElementName=colorToleranceSlider, Path=Maximum}" Margin="5"/>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Kitöltés:" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock Text="Dilatálás:" Margin="5"/>
+                                    <TextBlock Text="{Binding ElementName=dilateSlider, Path=Value}" Margin="5"/>
+                                </StackPanel>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding ElementName=dilateSlider, Path=Minimum}" Margin="5"/>
+
+                                    <Slider Grid.Column="1" x:Name="dilateSlider"
+                                                Minimum="0" 
+                                                Value="{Binding DilateSize.Value}"
+                                                Maximum="32"
+                                                TickFrequency="1"
+                                                IsSnapToTickEnabled="True"
+                                                VerticalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="2" Text="{Binding ElementName=dilateSlider, Path=Maximum}" Margin="5"/>
+
+                                </Grid>
+
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock Text="Erodálás:" Margin="5"/>
+                                    <TextBlock Text="{Binding ElementName=erodeSlider, Path=Value}" Margin="5"/>
+                                </StackPanel>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding ElementName=erodeSlider, Path=Minimum}" Margin="5"/>
+
+                                    <Slider Grid.Column="1" x:Name="erodeSlider"
+                                                Minimum="0" 
+                                                Value="{Binding ErodeSize.Value}"
+                                                Maximum="32"
+                                                TickFrequency="1"
+                                                IsSnapToTickEnabled="True"
+                                                VerticalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="2" Text="{Binding ElementName=erodeSlider, Path=Maximum}" Margin="5"/>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Regisztrált érték:" Margin="5"/>
+                        <TextBox Text="{Binding Registered.Value}" Margin="5" Width="50" HorizontalContentAlignment="Center"/>
+                        <CheckBox Content="Darabszámlálás" IsChecked="{Binding IsCountQuantity.Value}" VerticalAlignment="Center" Margin="5"/>
+                    </StackPanel>
+                    
+                    <GroupBox Header="Kiértékelés:" Margin="5">
+                        <rangesr:RangeSlider MinimumLimit="{Binding MinimumLimit.Value}" MinimumRange="{Binding MinimumRange.Value}" Value="{Binding DetectedValue.Value}" MaximumRange="{Binding MaximumRange.Value}" MaximumLimit="{Binding MaximumLimit.Value}" IsValueInRange="{Binding Result.Value}"/>
+                    </GroupBox>
+
+                </StackPanel>
+            </GroupBox>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

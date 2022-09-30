@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ImageProcess.ReferenceImages.ReferenceImagesV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignWidth="300">
+    <GroupBox Header="{Binding LanguageDC.ReferenceImagesColon.Value, FallbackValue=Reference_images:}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" MaxHeight="30" Source="{Binding ColorImage.Value}" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="5" MouseLeftButtonDown="ShowColorReferenceImageButtonClick"/>
+            <Image Grid.Column="1" MaxHeight="30" Source="{Binding MonochromeImage.Value}" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="5" MouseLeftButtonDown="ShowMonochromeReferenceImageButtonClick"/>
+            <Button Grid.Column="2" Content="{Binding LanguageDC.Refresh.Value, FallbackValue=Refresh}" VerticalAlignment="Center" Margin="5" Padding="5" Click="RefreshReferenceImagesButtonClick"/>
+
+        </Grid>
+
+    </GroupBox>
+</UserControl>
